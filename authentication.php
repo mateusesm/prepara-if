@@ -1,4 +1,5 @@
 <?php
+
     session_start();
 
     if (!isset($_SESSION['id_usuario'])) {
@@ -8,9 +9,8 @@
 
     } else {
 
-        unset($_SESSION['id_usuario']);
-
-        header('location: login.php');
+        include 'php/conexao.php';
 
     }
+
 ?>

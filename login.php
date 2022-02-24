@@ -100,9 +100,9 @@
         </section>
     </main>
         
-    <footer class="footer">
-        &copy; Alguns direitos reservados
-    </footer>
+    <?php
+        require_once 'footer.php';
+    ?>
 
     <script src="https://kit.fontawesome.com/00d3e5c25f.js" crossorigin="anonymous"></script>
 </body>
