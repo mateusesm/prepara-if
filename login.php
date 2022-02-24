@@ -39,6 +39,8 @@
 
                 <input class="button" type="submit" value="Entrar">
 
+                <div class="sub-text"><p><a href="#" id="log">Esqueceu a senha?</a></p></div>
+
                 <div class="sub-text"><p>Não tem uma conta?<a href="registration.php" id="log">Cadastre-se!</a></p></div>
 
                 <?php
