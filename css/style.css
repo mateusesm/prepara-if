@@ -1,0 +1,383 @@
+@import url('https://fonts.googleapis.com/css2?family=Gluten:wght@700;900&family=Rampart+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Poppins&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: 0;
+}
+    
+html {
+  font-size: 62.5%;
+  right: 0;
+  left: 0;
+  top: 0;
+}
+      
+body {
+  font-size: 1.6rem;
+  font-family: Arial, sans-serif;
+}
+
+/*------------------MENU----------------------*/
+.container-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  max-width: 1300px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.container-menu a {
+  text-decoration: none;
+}
+
+.container-menu h1 {
+  color: #346896;
+  text-shadow: rgba(0, 0, 0, .7) 0.1rem 0.1rem;
+  font-family: 'Gluten', cursive;
+}
+
+.menu-section {
+  display: block;
+  position: absolute;
+  list-style: none;
+  width: 18vw;
+  height: auto;
+  left: 77%;
+  z-index: 10000;
+  border-radius: 10px;
+  transition: 0.5s;
+  background-color: #346896;
+  visibility: hidden;
+  overflow: hidden;
+
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+.botao-mobile {
+  display: block;
+  width: 35px;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.botao-mobile .hamburguer, .hamburguer::after, .hamburguer::before {
+  content: '';
+  display: block;
+  margin-top: 9px;
+  border-top: 2px solid #346896;
+  transition: 0.5s;
+}
+
+/*---------------QUANDO A CLASSE FOR  ACTIVE-------------------*/
+
+#menu.active .menu-section {
+  margin-top: 0.3%;
+  visibility: visible;
+  overflow: auto;
+  transform: scaleX(1);
+}
+
+#menu.active .hamburguer {
+  border-top-color: transparent;
+}
+
+#menu.active .hamburguer::before {
+  transform: rotate(135deg);
+}
+
+#menu.active .hamburguer::after {
+  transform: rotate(-135deg) translate(7.5px, 7.5px);
+}
+
+/*-------------------------------------------------------------*/
+
+.menu-section li {
+  width: 80%;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.menu-section li a {
+  display: block;
+  position: relative;
+  padding: 1.5rem;
+  color: #ffffff;
+  border-radius: 10px;
+  transition: 0.5s;
+  border-bottom: 2px solid rgba(0, 0, 0, .1);
+}
+
+.menu-section li a:hover {
+  background-color: #3d7bb1;
+}
+
+.menu-section li a#del {
+  background-color: #dd7b45;
+}
+
+.menu-section li a#del:hover {
+  background-color: #F25600;
+}
+
+.menu-section li a#sair {
+  background-color: #DC4955;
+}
+
+.menu-section li a#sair:hover {
+  background-color: #CF231B;
+}
+
+/*-------------------------------------------*/
+
+
+/*-------------AREA PRINCIPAL----------------*/
+
+/*------------PRIMEIRA SECTION--------------*/
+.initial {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  max-width: 1300px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.info {
+  display: block;
+  margin: 1rem auto;
+  margin-left: 0;
+  max-width: 700px;
+  width: 100%;
+}
+
+.info h1 {
+  color: #346896;
+  font-size: 5rem;
+  text-shadow: rgba(0, 0, 0, .7) 0.1rem 0.1rem;
+  font-family: 'Gluten', cursive;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.info h2 {
+  font-family: 'Josefin Sans', sans-serif;
+  color: rgba(0, 0, 0, .7);
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  line-height: 2.8rem;
+}
+
+.info p {
+  font-family: 'Josefin Sans', sans-serif;
+  color: rgba(0, 0, 0, .7);
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 1.8rem;
+  line-height: 2.8rem;
+}
+
+a#button {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+  background-color: #346896;
+  color: #ffffff;
+  font-weight: bolder;
+  font-size: 2rem;
+  padding: 2rem;
+  max-width: 250px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+
+a#button:hover {
+  background-color: #3d7bb1;
+}
+
+.sub-text p {
+  font-family: Arial, sans-serif;
+  font-size: 1.5rem;
+  color: rgba(0, 0, 0, .7);
+}
+
+.sub-text p a#log {
+  padding: 0.5rem;
+  color: #346896;
+}
+
+.sub-text p a:hover {
+  color: #3d7bb1;
+}
+
+.image-right {
+  display: block;
+}
+
+.image-right img#img-index {
+  display: block;
+  max-width: 400px;
+  min-width: 300px;
+  width: 100%;
+}
+/*------------------------------------------*/
+
+
+/*------------SEGUNDA SECTION--------------*/
+.second {
+  display: block;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  flex-wrap: wrap;
+  max-width: 1300px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.second .cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.second .cards > div {
+  flex: 1 1 200px;
+  margin: 2rem auto;
+  max-width: 200px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  padding: 1rem;
+  border: 1px solid rgba(0, 0, 0, .3);
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.second .cards > div:hover {
+  -webkit-tranform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.card img {
+  display: block;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.card p {
+  text-align: center;
+  color: rgba(0, 0, 0, .7);
+}
+
+/*------------------------------------------*/
+
+
+/*------------TERCEIRA SECTION--------------*/
+.third {
+  display: block;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  max-width: 1300px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.third .about {
+  color: rgba(0, 0, 0, .7);
+}
+
+.third .about h1 {
+  font-family: 'Gluten', cursive;
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.third .about p {
+  text-align: justify;
+  line-height: 2.8rem;
+}
+
+/*-------------------------------------------*/
+
+
+/*------------------RODAPÉ-------------------*/
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background-color: #346896; 
+  font-size: 1.3rem;
+  padding: 2rem;
+  height: 10vh;
+  clear: both;
+}
+/*-------------------------------------------*/
+
+/* Media Queries*/
+
+@media (max-width: 1150px) {
+  .menu-section {
+    width: 22vw;
+    left: 73%;
+  }
+}
+
+@media (max-width: 800px) {
+  .menu-section {
+    width: 28vw;
+    left: 68%;
+  }
+}
+
+@media (max-width: 650px) {
+  .initial {
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+  }
+
+  .image-right img {
+    margin-bottom: 2rem;
+  }
+
+  .menu-section {
+    width: 35vw;
+    left: 60%;
+  }
+}
+
+@media (max-width: 500px) {
+  .menu-section {
+    width: 50vw;
+    left: 45%;
+  }
+}
+
+@media (max-width: 400px) {
+  .menu-section {
+    width: 55vw;
+    left: 40%;
+  }
+}
+
+@media (max-width: 300px) {
+  .menu-section {
+    width: 70vw;
+    left: 25%;
+  }
+}

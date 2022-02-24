@@ -1,0 +1,147 @@
+#section-downloads {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border: 0;
+  }
+  
+  #div-text-downloads {
+    max-width: 500px;
+  }
+  
+  #div-text-downloads h1 {
+    text-align: left;
+  }
+  
+  #div-text-downloads h2 {
+    text-align: left;
+  }
+
+  #img-r-downloads #img-downloads {
+    display: block;
+  }
+  
+  #section-downloads-2 {
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    max-width: 1118px;
+  }
+  
+  #section-downloads-2 #icards-downloads > div {
+    flex: 1 1 280px;
+    max-width: 280px;
+    margin: 2rem auto;
+    padding: 2rem;
+    padding-bottom: 0;
+    cursor: default;
+    margin-top: 0;
+  }
+
+  #section-downloads-2 #icards-downloads > div:hover {
+    -webkit-tranform: scale(1.0);
+    transform: scale(1.0);
+  }
+
+  #section-downloads-2 #icards-downloads > div#ic-int{
+
+    margin: 2rem auto;
+    padding: 0;
+    background-color: #84BB3C;
+    border: none;
+  }
+
+  #section-downloads-2 #icards-downloads > div#ic-int:hover {
+
+    -webkit-tranform: scale(1.1);
+    transform: scale(1.1);
+    background-color: #63B02C;
+  
+  }
+
+  #section-downloads-2 #icards-downloads > div#ic-sub{
+
+    margin: 2rem auto;
+    padding: 0;
+    background-color: #DC4955;
+    border: none;
+
+  }
+
+  #section-downloads-2 #icards-downloads > div#ic-sub:hover {
+
+    -webkit-tranform: scale(1.1);
+    transform: scale(1.1);
+    background-color: #CF231B;
+
+  }
+  
+  #section-downloads-2 #icards-downloads div a {
+    display: block;
+    padding: 0;
+    text-decoration: none;
+    max-width: 80%;
+    margin: 0 auto;
+    cursor: pointer;
+  }
+
+  #section-downloads-2 #icards-downloads div a.link-int-sub {
+    padding: 7rem;
+    max-width: 100%;
+  }
+
+  #section-downloads-2 #icards-downloads div img {
+    max-width: 40%;
+  }
+
+  #section-downloads-2 #icards-downloads div img#sad-face {
+    max-width: 55%;
+  }
+
+  #section-downloads-2 #icards-downloads div a p {
+    padding: 1rem;
+    margin: 1.2rem auto;
+    border-radius: 15px;
+    max-width: 100%;
+    font-weight: bolder;
+    color: #ffffff;
+  }
+
+  #section-downloads-2 #icards-downloads div a p#int-sub {
+    font-size: 1.9rem;
+  }
+
+  #section-downloads-2 #icards-downloads div a p#prova {
+    background-color: #DC4955;
+  }
+
+  #section-downloads-2 #icards-downloads div a p#prova:hover {
+    background-color: #CF231B;
+  }
+
+
+  #section-downloads-2 #icards-downloads div p#gabarito {
+    background-color: #84BB3C;
+  }
+
+  #section-downloads-2 #icards-downloads div p#gabarito:hover {
+    background-color: #63B02C;
+  }
+
+  #section-downloads-2 #icards-downloads div p#unavailable {
+    background-color: #022545;
+  }
+
+/*-------------------------------------------*/
+
+/* Media Queries*/
+
+@media (max-width: 650px) {
+  #div-text-downloads h1 {
+    text-align: center;
+  }
+
+  #div-text-downloads h2 {
+    text-align: center;
+  }
+
+}
+  

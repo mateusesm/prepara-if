@@ -1,0 +1,54 @@
+#section-main {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border: 0;
+}
+
+#div-text-main {
+  max-width: 500px;
+}
+
+#div-text-main h1 {
+  text-align: left;
+}
+
+#div-text-main h2 {
+  text-align: left;
+}
+
+#img-r-main #img-main {
+  display: block;
+  max-width: 300px;
+}
+
+#section-main-2 {
+  padding-top: 1rem;
+  padding-bottom: 2.8rem;
+}
+
+#section-main-2 #icards-main > div {
+  margin: 2rem auto;
+  max-width: 280px;
+  padding: 0;
+}
+
+#section-main-2 #icards-main div a {
+  display: block;
+  padding: 2rem;
+  text-decoration: none;
+}
+
+/*-------------------------------------------*/
+
+/* Media Queries*/
+
+@media (max-width: 650px) {
+  #div-text-main h1 {
+    text-align: center;
+  }
+  
+  #div-text-main h2 {
+    text-align: center;
+  }
+}
+  

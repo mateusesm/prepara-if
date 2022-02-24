@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Gluten:wght@700;900&family=Rampart+One&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: 0;
+}
+    
+html {
+  font-size: 62.5%;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+}
+      
+body {
+  font-size: 1.6rem;
+  font-family: Arial, sans-serif;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login {
+  display: block;
+  padding: 0;
+  width: 100%;
+}
+
+.login h1.title {
+  color: #346896;
+  font-size: 4rem;
+  text-shadow: rgba(0, 0, 0, .7) 0.1rem 0.1rem;
+  font-family: 'Gluten', cursive;
+  text-align: center;
+  margin: 1rem auto;
+}
+
+.form_login h1 {
+  font-size: 2.5rem;
+  font-family: 'Gluten', cursive;
+  text-align: center;
+  color: rgba(0, 0, 0, .7);
+}
+  
+.form_login  {
+  position: relative;
+  max-width: 400px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 3rem;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, .3);
+  background-color: #ffffff;
+}
+
+.form_login label {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+  margin-bottom: -5%;
+  color:rgba(0, 0, 0, .7);
+  font-weight: bolder;
+}
+
+i {
+  position: fixed;
+  color: rgba(0, 0, 0, .7);
+  padding: 1rem;
+}
+
+.form_login input, select {
+  width: 100%;
+  height: auto;
+  padding: 3%;
+  padding-left: 10%;
+  font-size: 1.6rem;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, .3);
+  margin-top: 2rem;
+  outline: none;
+}
+
+.form_login input.box:hover{
+  border: 2px solid #3d7bb1;
+}
+
+.form_login .button {
+  color: #ffffff;
+  background-color: #346896;
+  cursor: pointer;
+  border-radius: 50px;
+  border: none;
+  padding-left: 5%;
+}
+
+.form_login .button:hover {
+  background-color: #3d7bb1;
+}
+
+.form_login .sub-text p {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.form_login #msg-sucesso {
+  width: 100%;
+  text-align: center;
+  padding: 1%;
+  margin-top: 1rem;
+  background-color: rgba(50, 205, 50, 0.3);
+  border: none;
+  color: rgb(34, 139, 34);
+}
+
+.form_login #msg-erro {
+
+  width: 100%;
+  text-align: center;
+  padding: 1%;
+  margin-top: 1rem;
+  background-color: rgba(250, 128, 114, 0.3);
+  border: none;
+  color: rgb(165, 42, 42);
+
+}
+
+footer.footer {
+  display: none;
+}
+
+/*Media Queries*/
+
+@media (max-width: 4000px) {
+  i {
+    margin-top: 0.5%;
+  }
+}
+
+@media (max-width: 1920px) {
+  i {
+    margin-top: 1.5%;
+  }
+}
+
+@media (max-width: 1280px) {
+  i {
+    margin-top: 1.6%;
+  }
+}
+
+@media (max-width: 1000px) {
+  i {
+    margin-top: 2.2%;
+  }
+}
+
+@media (max-width: 700px) {
+  i {
+    margin-top: 3%;
+  }
+}
+
+@media (max-width: 550px) {
+  .login h1.title {
+    font-size: 4rem;
+  }
+
+  .form_login {
+    width: 90%;
+  }
+
+  i {
+    margin-top: 4%;
+  }
+}
+
+@media (max-width: 400px) {
+  i {
+    margin-top: 5%;
+  }
+
+  .form_login input {
+    padding-left: 12%;
+  }
+}
+
+@media (max-width: 350px) {
+  html {
+    font-size: 50%;
+  }
+
+  .login h1.title {
+    font-size: 3rem;
+  }
+
+  .form_login h1 {
+    font-size: 2rem;
+  }
+
+  .form_login input {
+    font-size: 1.3rem;
+  }
+
+  .form_login .sub-text p {
+    font-size: 1.2rem;
+  }
+
+}
+
+@media (max-width: 290px) {
+
+  .login h1.title {
+    font-size: 2rem;
+  }
+
+  .form_login h1 {
+    font-size: 1.5rem;
+  }
+
+  .form_login input {
+    font-size: 1rem;
+  }
+
+  .form_login .sub-text p {
+    font-size: 0.9rem;
+  }
+ 
+}
