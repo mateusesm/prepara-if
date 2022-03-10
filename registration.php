@@ -11,6 +11,10 @@
 </head>
 <body>
 
+    <?php
+        require_once 'header-index.php';
+    ?>
+
     <main class="main">
 
         <section class="login">
@@ -126,5 +130,6 @@
     ?>
 
     <script src="https://kit.fontawesome.com/00d3e5c25f.js" crossorigin="anonymous"></script>
+    <script src="js/toggle-menu.js"></script>
 </body>
 </html>

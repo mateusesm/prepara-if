@@ -14,12 +14,15 @@
 </head>
 <body>
 
+    <?php
+        require_once 'header-index.php';
+    ?>
+
     <main class="main" >
             
         <section class="login">
             
             <h1 class="title">Prepara IF!</h1>
-            
         
             <form class="form_login" method="POST">
 
@@ -27,7 +30,7 @@
 
                 <p><label for="mail"></label>
 
-                <i class="fas fa-user"></i>
+                <i class="fas fa-envelope"></i>
 
                 <input class="box" id="mail" type="text" name="mail" maxlength="50" placeholder="Seu email"></p>
 
@@ -39,7 +42,7 @@
 
                 <input class="button" type="submit" value="Entrar">
 
-                <div class="sub-text"><p><a href="#" id="log">Esqueceu a senha?</a></p></div>
+                <div class="sub-text"><p><a href="recover-password.php" id="log">Esqueceu a senha? Clique aqui!</a></p></div>
 
                 <div class="sub-text"><p>Não tem uma conta?<a href="registration.php" id="log">Cadastre-se!</a></p></div>
 
@@ -95,6 +98,12 @@
 
                     }
 
+                    if (isset($_SESSION['msg'])) {
+
+                        echo $_SESSION['msg'];
+                        unset($_SESSION['msg']);
+                    }
+
                 ?>
 
             </form>
@@ -107,5 +116,6 @@
     ?>
 
     <script src="https://kit.fontawesome.com/00d3e5c25f.js" crossorigin="anonymous"></script>
+    <script src="js/toggle-menu.js"></script>
 </body>
 </html>

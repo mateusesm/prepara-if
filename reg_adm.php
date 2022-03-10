@@ -21,7 +21,6 @@
     <main class="main">
 
         <section class="login">
-            <h1 class="title">Prepara IF!</h1>
     
             <form action="reg_adm.php" class="form_login" method="POST">
 

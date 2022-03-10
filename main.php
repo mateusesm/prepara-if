@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="images/book.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/main.css">
-    <title>Prepara IF</title>
+    <title>Bem-vindo ao Prepara IF</title>
 </head>
 <body>
 
