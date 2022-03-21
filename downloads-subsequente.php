@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <link rel="shortcut icon" href="images/book.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/main.css">
@@ -15,100 +15,114 @@
 </head>
 <body>
     
-    <?php
-        require_once 'header.php';
-    ?>
+    <div class="container-content">
 
-    <main class="main" >
+        <?php
+            require_once 'header.php';
+        ?>
 
-        <section class="initial" id="section-downloads">
+        <main class="main" >
 
-            <div class="info" id="div-text-downloads">
-                <h1>Provas do Subsequente</h1>
-                <h2>Logo abaixo temos cards que direcionam para provas de anos anteriores do Subsequente! Clique para baixar!</h2>
-            </div>
- 
-            <div class="image-right" id="img-r-downloads">
-                <img src="images/prova.png" alt="Homem Jovem estudando" id="img-downloads">
-            </div>
+            <section class="initial" id="section-main">
 
-        </section>
+                <div class="info" id="div-text-downloads">
+                    <h1>Provas do Subsequente</h1>
+                    <h2>Logo abaixo temos cards que direcionam para provas de anos anteriores do Subsequente! Clique para baixar!</h2>
+                </div>
+    
+                <div class="image-right" id="img-r-main">
+                    <img src="images/prova.png" alt="Homem Jovem estudando" id="img-main">
+                </div>
 
-        <section class="second" id="section-downloads-2">
+            </section>
 
-            <div class="cards" id="icards-downloads">
+            <section class="second" id="section-downloads-2">
 
-                <?php
+                <div class="cards" id="icards-downloads">
 
-                    $select = $pdo->prepare("SELECT provas.prova, gabaritos.gabarito FROM provas JOIN gabaritos ON gabaritos.id_gabarito = provas.id_gabarito WHERE provas.modalidade = 'Subsequente' ORDER BY provas.prova DESC;");
+                    <?php
 
-                    $select->execute();
+                        $select = $pdo->prepare("SELECT provas.prova, gabaritos.gabarito FROM provas JOIN gabaritos ON gabaritos.id_gabarito = provas.id_gabarito WHERE provas.modalidade = 'Subsequente' ORDER BY provas.prova DESC;");
 
-                    if ($select->rowCount() > 0) {
+                        $select->execute();
 
-                        $documents = $select->fetchAll(PDO::FETCH_ASSOC);
+                        if ($select->rowCount() > 0) {
 
-                            for ($c = 0; $c < count($documents); $c++) {
+                            $documents = $select->fetchAll(PDO::FETCH_ASSOC);
 
-                                echo "<div class='card' id='ic-downloads'>
-                                        
-                                        <img src='images/pdf.png' alt='PDF'/>
+                                for ($c = 0; $c < count($documents); $c++) {
 
-                                        <a href='pdfs/subsequente/provas/" . $documents[$c]['prova'] . "'target='_blank'>
+                                    echo "<div class='card' id='ic-downloads'>
+                                            
+                                            <img src='images/pdf.png' alt='PDF'/>
 
-                                            <p id='prova'>
+                                            <a href='pdfs/subsequente/provas/" . $documents[$c]['prova'] . "'target='_blank'>
 
-                                                <span>Baixe já:</span>
-                                                <span>" . $documents[$c]['prova'] . "</span>
+                                                <p id='prova'>
 
-                                            </p>
+                                                    <span>Baixe já:</span>
+                                                    <span>" . $documents[$c]['prova'] . "</span>
 
-                                        </a>
+                                                </p>
 
-                                        <a href='pdfs/subsequente/gabaritos/" . $documents[$c]['gabarito'] . "' target='_blank'>
+                                            </a>
 
-                                            <p id='gabarito'>
+                                            <a href='pdfs/subsequente/gabaritos/" . $documents[$c]['gabarito'] . "' target='_blank'>
 
-                                                <span>Baixe já:</span>
-                                                <span>" . $documents[$c]['gabarito'] . "</span>
+                                                <p id='gabarito'>
 
-                                            </p>
+                                                    <span>Baixe já:</span>
+                                                    <span>" . $documents[$c]['gabarito'] . "</span>
 
-                                        </a>
-                                        
+                                                </p>
+
+                                            </a>";
+
+                                            if ($_SESSION['nivel'] == 2) {
+
+                                                echo "<div class='button-delete-documents'>
+
+                                                <a href='delete-documents.php'>Excluir</a>
+
+                                                </div>";
+
+                                            }
+                                            
+                                        echo "</div>";
+                                }
+
+                        } else {
+
+                            echo "<div class='card' id='ic-downloads'>
+                                    
+                                            <img  id='sad-face' src='images/sad-face.jpg' alt='Sad face'/>
+
+                                            <a>
+
+                                                <p id='unavailable'>
+
+                                                    <span>Nenhuma prova ou gabarito disponíveis</span>
+
+                                                </p>
+
+                                            </a>
                                     </div>";
-                            }
+                            
+                        }
 
-                    } else {
+                    ?>
 
-                        echo "<div class='card' id='ic-downloads'>
-                                
-                                        <img  id='sad-face' src='images/sad-face.jpg' alt='Sad face'/>
+                </div>
 
-                                        <a>
+            </section>
 
-                                            <p id='unavailable'>
+        </main>
 
-                                                <span>Nenhuma prova ou gabarito disponíveis</span>
+        <?php
+            require_once 'footer.php';
+        ?>
 
-                                            </p>
-
-                                        </a>
-                                </div>";
-                        
-                    }
-
-                ?>
-
-            </div>
-
-        </section>
-
-    </main>
-
-    <?php
-        require_once 'footer.php';
-    ?>
+    </div>
 
     <script src="js/toggle-menu.js"></script>
 

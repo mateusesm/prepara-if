@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <link rel="shortcut icon" href="images/book.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/main.css">
@@ -14,97 +14,101 @@
 </head>
 <body>
 
-    <?php
-        require_once 'header.php';
-    ?>
+    <div class="container-content">
 
-    <main class="main" >
+        <?php
+            require_once 'header.php';
+        ?>
 
-        <section class="initial" id="section-main">
+        <main class="main" >
 
-            <div class="info" id="div-text-main">
-                <h1>
+            <section class="initial" id="section-main">
 
-                    <?php
+                <div class="info" id="div-text-main">
+                    <h1>
 
-                        if (!empty($_SESSION['logado'])) {
+                        <?php
 
-                            $select = $pdo->prepare("SELECT nome FROM usuarios WHERE id_usuario = :id");
+                            if (!empty($_SESSION['logado'])) {
 
-                            $select->bindValue(":id",$_SESSION['id_usuario']);
-                            $select->execute();
+                                $select = $pdo->prepare("SELECT nome FROM usuarios WHERE id_usuario = :id");
 
-                            if ($select->rowCount() > 0) {
+                                $select->bindValue(":id",$_SESSION['id_usuario']);
+                                $select->execute();
 
-                                $nome = $select->fetch();
+                                if ($select->rowCount() > 0) {
 
-                                $nome_usuario = $nome['nome'];
+                                    $nome = $select->fetch();
 
-                                if ($_SESSION['nivel'] == 1) {
+                                    $nome_usuario = $nome['nome'];
 
-                                    echo "Que bom ter você aqui, " . $nome_usuario . " !";
+                                    if ($_SESSION['nivel'] == 1) {
 
-                                } else if ($_SESSION['nivel'] == 2) {
+                                        echo "Que bom ter você aqui, " . $nome_usuario . " !";
 
-                                    echo "Bem-vindo (a), ADM " . $nome_usuario . " !";
+                                    } else if ($_SESSION['nivel'] == 2) {
 
-                                }
+                                        echo "Bem-vindo (a), ADM " . $nome_usuario . " !";
 
-                            }  
-                        }
-                    ?>
+                                    }
 
-                </h1>
+                                }  
+                            }
+                        ?>
 
-                <h2>Abaixo temos cards que direcionam para nossos conteúdos, bons estudos!</h2>
-             
-            </div>
- 
-            <div class="image-right" id="img-r-main">
-                <img src="images/study-man.jpg" alt="Homem Jovem estudando" id="img-main">
-            </div>
+                    </h1>
 
-        </section>
-
-        <section class="second" id="section-main-2">
-            <div class="cards" id="icards-main">
-
-                <div class="card" id="prova">
-                    <a href="downloads.php">
-                        <img src="images/prova.png" alt="Prova">
-                        <p>Downloads de provas anteriores</p>
-                    </a>
+                    <h2>Abaixo temos cards que direcionam para nossos conteúdos, bons estudos!</h2>
+                
                 </div>
-           
-
-                <div class="card" id="redacao">
-                    <a href="redaction.php">
-                        <img src="images/redacao.png" alt="Redação">
-                        <p>Temas de redações anteriores</p>
-                    </a>
+    
+                <div class="image-right" id="img-r-main">
+                    <img src="images/study-man.jpg" alt="Homem Jovem estudando" id="img-main">
                 </div>
 
-                <div class="card" id="simulado">
-                    <a href="simulated.php">
-                        <img src="images/simulado.png" alt="Simulado">
-                        <p>Simulados</p>
-                    </a>
-                </div>
+            </section>
 
-                <div class="card" id="dica">
-                    <a href="tips.php">
-                        <img src="images/dica.png" alt="Dica">
-                        <p>Dicas de estudo</p>
-                    </a>
-                </div>
-            </div>   
-        </section>
+            <section class="second" id="section-main-2">
+                <div class="cards" id="icards-main">
 
-    </main>
+                    <div class="card" id="prova">
+                        <a href="downloads.php">
+                            <img src="images/prova.png" alt="Prova">
+                            <p>Downloads de provas anteriores</p>
+                        </a>
+                    </div>
+            
 
-    <?php
-        require_once 'footer.php';
-    ?>
+                    <div class="card" id="redacao">
+                        <a href="redaction.php">
+                            <img src="images/redacao.png" alt="Redação">
+                            <p>Temas de redações anteriores</p>
+                        </a>
+                    </div>
+
+                    <div class="card" id="simulado">
+                        <a href="simulated.php">
+                            <img src="images/simulado.png" alt="Simulado">
+                            <p>Simulados</p>
+                        </a>
+                    </div>
+
+                    <div class="card" id="dica">
+                        <a href="tips.php">
+                            <img src="images/dica.png" alt="Dica">
+                            <p>Dicas de estudo</p>
+                        </a>
+                    </div>
+                </div>   
+            </section>
+
+        </main>
+
+        <?php
+            require_once 'footer.php';
+        ?>
+
+    </div>
 
     <script src="js/toggle-menu.js"></script>
     

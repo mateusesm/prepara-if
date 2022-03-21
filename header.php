@@ -15,6 +15,8 @@
                         <li><a href="#">Ajuda</a></li>
                         <li><a href="#">Fale conosco</a></li>
                         <li><a href="edit-profile.php">Editar Perfil</a></li>
+                        <li><a href="edit-profile.php">Editar Perfil</a></li>
+                        <li><a href="edit-profile.php">Editar Perfil</a></li>
                         <?php
 
                             if ($_SESSION['nivel'] == 2) {

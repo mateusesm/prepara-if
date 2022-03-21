@@ -16,20 +16,45 @@ html {
 }
       
 body {
+
   font-size: 1.6rem;
   font-family: Arial, sans-serif;
+  
+}
+
+.container-content {
+
+  max-width: 1500px;
+  display: block;
+  margin: 0 auto;
+
 }
 
 /*------------------MENU----------------------*/
+
+.header {
+
+  max-height: 70px;
+  height: 10vh;
+
+}
+
 .container-menu {
+  
   display: flex;
   align-items: center;
+  align-self: center;
   justify-content: space-between;
-  padding: 0.5rem;
+  position: fixed;
+  background-color: #fff;
+  z-index: 1000;
+  padding: 1rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
-  max-width: 1300px;
-  width: 90%;
-  margin: 0 auto;
+  max-width: 1500px;
+  width: 100%;
+
 }
 
 .container-menu a {
@@ -140,16 +165,24 @@ body {
 
 /*-------------AREA PRINCIPAL----------------*/
 
+.main {
+
+  width: 100%;
+  height: auto;
+
+}
+
 /*------------PRIMEIRA SECTION--------------*/
 .initial {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 2rem;
+  padding: 1.5rem;
+  padding-top: 6rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   max-width: 1300px;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -233,6 +266,7 @@ a#button:hover {
   max-width: 400px;
   min-width: 300px;
   width: 100%;
+  margin-top: -6rem;
 }
 /*------------------------------------------*/
 
@@ -240,12 +274,13 @@ a#button:hover {
 /*------------SEGUNDA SECTION--------------*/
 .second {
   display: block;
+  padding: 1.5rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   flex-wrap: wrap;
   max-width: 1300px;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -288,11 +323,12 @@ a#button:hover {
 /*------------TERCEIRA SECTION--------------*/
 .third {
   display: block;
+  padding: 1.5rem;
   padding-top: 2rem;
   padding-bottom: 4rem;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   max-width: 1300px;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -324,8 +360,10 @@ a#button:hover {
   background-color: #346896; 
   font-size: 1.3rem;
   padding: 2rem;
-  height: 10vh;
+  height: 20vh !important;
   clear: both;
+  margin-bottom: 0 !important;
+  margin-top: 0%;
 }
 /*-------------------------------------------*/
 
@@ -338,10 +376,16 @@ a#button:hover {
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 810px) {
   .menu-section {
     width: 28vw;
     left: 68%;
+  }
+
+  .image-right img#img-index {
+    max-width: 450px;
+    min-width: 350px;
+    margin-top: -12rem;
   }
 }
 
@@ -351,8 +395,9 @@ a#button:hover {
     justify-content: center;
   }
 
-  .image-right img {
+  .image-right img#img-index {
     margin-bottom: 2rem;
+    margin-top: -6rem;
   }
 
   .menu-section {

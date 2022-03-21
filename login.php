@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <link rel="shortcut icon" href="images/book.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/login.css">
@@ -14,106 +14,110 @@
 </head>
 <body>
 
-    <?php
-        require_once 'header-index.php';
-    ?>
+    <div class="container-content">
 
-    <main class="main" >
+        <?php
+            require_once 'header-index.php';
+        ?>
+
+        <main class="main" >
+                
+            <section class="login">
+                
+                <h1 class="title">Prepara IF!</h1>
             
-        <section class="login">
-            
-            <h1 class="title">Prepara IF!</h1>
-        
-            <form class="form_login" method="POST">
+                <form class="form_login" method="POST">
 
-                <h1>Faça Login</h1>
+                    <h1>Faça Login</h1>
 
-                <p><label for="mail"></label>
+                    <p><label for="mail"></label>
 
-                <i class="fas fa-envelope"></i>
+                    <i class="fas fa-envelope"></i>
 
-                <input class="box" id="mail" type="text" name="mail" maxlength="50" placeholder="Seu email"></p>
+                    <input class="box" id="mail" type="text" name="mail" maxlength="50" placeholder="E-mail"></p>
 
-                <p><label for="password"></label>
+                    <p><label for="password"></label>
 
-                <i class="fas fa-lock"></i>
+                    <i class="fas fa-lock"></i>
 
-                <input class="box" id="password" type="password" name="password" maxlength="20" placeholder="Sua senha"></p>
+                    <input class="box" id="password" type="password" name="password" maxlength="20" placeholder="Senha"></p>
 
-                <input class="button" type="submit" value="Entrar">
+                    <input class="button" type="submit" value="Entrar">
 
-                <div class="sub-text"><p><a href="recover-password.php" id="log">Esqueceu a senha? Clique aqui!</a></p></div>
+                    <div class="sub-text"><p><a href="recover-password.php" id="log">Esqueceu a senha? Clique aqui!</a></p></div>
 
-                <div class="sub-text"><p>Não tem uma conta?<a href="registration.php" id="log">Cadastre-se!</a></p></div>
+                    <div class="sub-text"><p>Não tem uma conta?<a href="registration.php" id="log">Cadastre-se!</a></p></div>
 
-                <?php
+                    <?php
 
-                    if (isset($_POST['mail'])) {
+                        if (isset($_POST['mail'])) {
 
-                        $_SESSION['logado'] = addslashes($_POST['mail']);
+                            $_SESSION['logado'] = addslashes($_POST['mail']);
 
-                        $email = addslashes($_POST['mail']);
-                        $senha = addslashes($_POST['password']);
+                            $email = addslashes($_POST['mail']);
+                            $senha = addslashes($_POST['password']);
 
-                        if (!empty($email) && !empty($senha)) {
+                            if (!empty($email) && !empty($senha)) {
 
-                            include 'php/conexao.php';
+                                include 'php/conexao.php';
 
-                            $select = $pdo->prepare("SELECT id_usuario, nivel FROM usuarios WHERE email = :e AND senha = :s");
+                                $select = $pdo->prepare("SELECT id_usuario, nivel FROM usuarios WHERE email = :e AND senha = :s");
 
-                            $select->bindValue(":e",$email);
-                            $select->bindValue(":s",md5($senha));
-                            $select->execute();
+                                $select->bindValue(":e",$email);
+                                $select->bindValue(":s",md5($senha));
+                                $select->execute();
 
-                            if ($select->rowCount() > 0) {
+                                if ($select->rowCount() > 0) {
 
-                                $data = $select->fetch();
+                                    $data = $select->fetch();
 
-                                $_SESSION['id_usuario'] = $data['id_usuario'];
-                                $_SESSION['nivel'] = $data['nivel'];
+                                    $_SESSION['id_usuario'] = $data['id_usuario'];
+                                    $_SESSION['nivel'] = $data['nivel'];
 
-                                header('location: main.php');
+                                    header('location: main.php');
+
+                                } else {
+
+                                    ?>
+
+                                    <div id="msg-erro">E-mail e/ou senha estão incoretos!</div>
+
+                                    <?php
+
+                                }
+
 
                             } else {
 
                                 ?>
 
-                                <div id="msg-erro">E-mail e/ou senha estão incoretos!</div>
+                                <div id="msg-erro">Preencha todos os campos!</div>
 
                                 <?php
 
                             }
 
 
-                        } else {
-
-                            ?>
-
-                            <div id="msg-erro">Preencha todos os campos!</div>
-
-                            <?php
-
                         }
 
+                        if (isset($_SESSION['msg'])) {
 
-                    }
+                            echo $_SESSION['msg'];
+                            unset($_SESSION['msg']);
+                        }
 
-                    if (isset($_SESSION['msg'])) {
+                    ?>
 
-                        echo $_SESSION['msg'];
-                        unset($_SESSION['msg']);
-                    }
+                </form>
 
-                ?>
+            </section>
+        </main>
+            
+        <?php
+            require_once 'footer.php';
+        ?>
 
-            </form>
-
-        </section>
-    </main>
-        
-    <?php
-        require_once 'footer.php';
-    ?>
+    </div>
 
     <script src="https://kit.fontawesome.com/00d3e5c25f.js" crossorigin="anonymous"></script>
     <script src="js/toggle-menu.js"></script>

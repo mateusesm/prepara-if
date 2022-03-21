@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <link rel="shortcut icon" href="images/book.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/main.css">
@@ -15,74 +15,78 @@
 </head>
 <body>
 
-    <?php
-        require_once 'header.php';
-    ?>
+    <div class="container-content">
 
-    <main class="main" >
+        <?php
+            require_once 'header.php';
+        ?>
 
-        <section class="initial" id="section-downloads">
+        <main class="main" >
 
-            <div class="info" id="div-text-downloads">
-                <h1>Dicas</h1>
-                <h2>Logo abaixo temos cards que direcionam para algumas dicas de estudo. Aproveite!</h2>
-            </div>
- 
-            <div class="image-right" id="img-r-downloads">
-                <img src="images/dica.png" alt="Lâmpada acesa" id="img-downloads">
-            </div>
+            <section class="initial" id="section-main">
 
-        </section>
-
-        <section class="second" id="section-downloads-2">
-
-            <div class="cards" id="icards-downloads">
-
-                <div class="card" id="ic-downloads">
-                    <a href="#">
-                        <p>Dicas de estudo</p>
-                    </a>
+                <div class="info" id="div-text-downloads">
+                    <h1>Dicas</h1>
+                    <h2>Logo abaixo temos cards que direcionam para algumas dicas de estudo. Aproveite!</h2>
+                </div>
+    
+                <div class="image-right" id="img-r-main">
+                    <img src="images/dica.png" alt="Lâmpada acesa" id="img-main">
                 </div>
 
-                <div class="card" id="ic-downloads">
-                    <a href="#">
-                        <p>Dicas de estudo</p>
-                    </a>
+            </section>
+
+            <section class="second" id="section-downloads-2">
+
+                <div class="cards" id="icards-downloads">
+
+                    <div class="card" id="ic-downloads">
+                        <a href="#">
+                            <p>Dicas de estudo</p>
+                        </a>
+                    </div>
+
+                    <div class="card" id="ic-downloads">
+                        <a href="#">
+                            <p>Dicas de estudo</p>
+                        </a>
+                    </div>
+
+                    <div class="card" id="ic-downloads">
+                        <a href="#">
+                            <p>Dicas de estudo</p>
+                        </a>
+                    </div>
+
+                    <div class="card" id="ic-downloads">
+                        <a href="#">
+                            <p>Dicas de estudo</p>
+                        </a>
+                    </div>
+
+                    <div class="card" id="ic-downloads">
+                        <a href="#">
+                            <p>Dicas de estudo</p>
+                        </a>
+                    </div>
+
+                    <div class="card" id="ic-downloads">
+                        <a href="#">
+                            <p>Dicas de estudo</p>
+                        </a>
+                    </div>
+
                 </div>
 
-                <div class="card" id="ic-downloads">
-                    <a href="#">
-                        <p>Dicas de estudo</p>
-                    </a>
-                </div>
+            </section>
 
-                <div class="card" id="ic-downloads">
-                    <a href="#">
-                        <p>Dicas de estudo</p>
-                    </a>
-                </div>
+        </main>
 
-                <div class="card" id="ic-downloads">
-                    <a href="#">
-                        <p>Dicas de estudo</p>
-                    </a>
-                </div>
-
-                <div class="card" id="ic-downloads">
-                    <a href="#">
-                        <p>Dicas de estudo</p>
-                    </a>
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-    <?php
-        require_once 'footer.php';
-    ?>
+        <?php
+            require_once 'footer.php';
+        ?>
+        
+    </div>
 
     <script src="js/toggle-menu.js"></script>
     

@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <link rel="shortcut icon" href="images/book.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/login.css">
@@ -14,124 +14,128 @@
 </head>
 <body>
 
-    <?php
-        require_once 'header.php';
-    ?>
+    <div class="container-content">
 
-    <main class="main">
+        <?php
+            require_once 'header.php';
+        ?>
 
-        <section class="login">
-    
-            <form action="reg_adm.php" class="form_login" method="POST">
+        <main class="main">
 
-                <h1>Cadastre um novo Administrador!</h1>
+            <section class="login">
+        
+                <form action="reg_adm.php" class="form_login" method="POST">
 
-                <p><label for="name"></label>
+                    <h1>Cadastre um novo Administrador!</h1>
 
-                <i class="fas fa-user"></i>
+                    <p><label for="name"></label>
 
-                <input class="box" id="name" type="text" name="name" maxlength="50" placeholder="Seu nome completo"></p>
+                    <i class="fas fa-user"></i>
 
-                <p><label for="mail"></label>
+                    <input class="box" id="name" type="text" name="name" maxlength="50" placeholder="Seu nome completo"></p>
 
-                <i class="fas fa-envelope"></i>
+                    <p><label for="mail"></label>
 
-                <input class="box" id="mail" type="email" name="mail" maxlength="50" placeholder="Seu melhor email"></p>
+                    <i class="fas fa-envelope"></i>
 
-                <p><label for="password"></label>
+                    <input class="box" id="mail" type="email" name="mail" maxlength="50" placeholder="Seu melhor email"></p>
 
-                <i class="fas fa-lock"></i>
+                    <p><label for="password"></label>
 
-                <input class="box" id="password" type="password" name="password" maxlength="20" placeholder="Sua senha"></p>
+                    <i class="fas fa-lock"></i>
 
-                <p><label for="cPassword"></label>
+                    <input class="box" id="password" type="password" name="password" maxlength="20" placeholder="Senha"></p>
 
-                <i class="fas fa-lock" id="confirm"></i>
+                    <p><label for="cPassword"></label>
 
-                <input class="box" id="cPassword" type="password" name="cPassword" maxlength="20" placeholder="Confirme sua senha"></p>
+                    <i class="fas fa-lock" id="confirm"></i>
 
-                <input class="button" type="submit" value="Cadastrar">
+                    <input class="box" id="cPassword" type="password" name="cPassword" maxlength="20" placeholder="Confirmar senha"></p>
 
-                <div class="sub-text"><p>Já tem uma conta?<a href="login.php" id="log">Faça login!</a></p></div>
+                    <input class="button" type="submit" value="Cadastrar">
 
-                <?php
+                    <div class="sub-text"><p>Já tem uma conta?<a href="login.php" id="log">Faça login!</a></p></div>
 
-                    if (isset($_POST['name'])) {
+                    <?php
 
-                        $nome = addslashes($_POST['name']);
-                        $email = addslashes($_POST['mail']);
-                        $senha = addslashes($_POST['password']);
-                        $confSenha = addslashes($_POST['cPassword']);
-                        $nivel = 2;
+                        if (isset($_POST['name'])) {
 
-                        include 'php/conexao.php';
+                            $nome = addslashes($_POST['name']);
+                            $email = addslashes($_POST['mail']);
+                            $senha = addslashes($_POST['password']);
+                            $confSenha = addslashes($_POST['cPassword']);
+                            $nivel = 2;
 
-                            if ((!empty($nome) && !empty($email) && !empty($senha) && !empty($nivel))) {
+                            include 'php/conexao.php';
 
-                                if ($senha == $confSenha) {
+                                if ((!empty($nome) && !empty($email) && !empty($senha) && !empty($nivel))) {
 
-                                    $select = $pdo->prepare("SELECT id_usuario FROM usuarios WHERE email = :e");
-                                    $select->bindValue(":e",$email);
-                                    $select->execute();
-                                    
-                                    if ($select->rowCount() > 0) {
+                                    if ($senha == $confSenha) {
 
-                                        ?>
-
-                                        <div id="msg-erro">Email já cadastrado!</div>
-
-                                        <?php
+                                        $select = $pdo->prepare("SELECT id_usuario FROM usuarios WHERE email = :e");
+                                        $select->bindValue(":e",$email);
+                                        $select->execute();
                                         
+                                        if ($select->rowCount() > 0) {
+
+                                            ?>
+
+                                            <div id="msg-erro">Email já cadastrado!</div>
+
+                                            <?php
+                                            
+                                        } else {
+
+                                            $insert = $pdo->prepare("INSERT INTO usuarios(nome, email, senha, nivel) VALUES (:n, :e, :s, :ni)");
+            
+                                            $insert->bindValue(":n",$nome);
+                                            $insert->bindValue(":e",$email);
+                                            $insert->bindValue(":s",md5($senha));
+                                            $insert->bindValue(":ni",$nivel);
+                                            $insert->execute();
+
+                                            ?>
+
+                                            <div id="msg-sucesso">Cadastro realizado com sucesso!</div>
+
+                                            <?php
+
+                                        }
+
                                     } else {
 
-                                        $insert = $pdo->prepare("INSERT INTO usuarios(nome, email, senha, nivel) VALUES (:n, :e, :s, :ni)");
-        
-                                        $insert->bindValue(":n",$nome);
-                                        $insert->bindValue(":e",$email);
-                                        $insert->bindValue(":s",md5($senha));
-                                        $insert->bindValue(":ni",$nivel);
-                                        $insert->execute();
-
                                         ?>
 
-                                        <div id="msg-sucesso">Cadastro realizado com sucesso!</div>
+                                        <div id="msg-erro">Senha e Confirmar Senha não correspondem!</div>
 
                                         <?php
 
                                     }
-
+        
                                 } else {
-
+                                    
                                     ?>
 
-                                    <div id="msg-erro">Senha e Confirmar Senha não correspondem!</div>
+                                    <div id="msg-erro">Preencha todos os campos!</div>
 
                                     <?php
-
+                                        
                                 }
-    
-                            } else {
-                                
-                                ?>
 
-                                <div id="msg-erro">Preencha todos os campos!</div>
+                        }
+                    ?>  
+                    
+                </form>
 
-                                <?php
-                                    
-                            }
+            </section>
+            
+        </main>
 
-                    }
-                ?>  
-                
-            </form>
+        <?php
+            require_once 'footer.php';
+        ?>
 
-        </section>
-        
-    </main>
-
-    <?php
-        require_once 'footer.php';
-    ?>
+    </div>
 
     <script src="https://kit.fontawesome.com/00d3e5c25f.js" crossorigin="anonymous"></script>
     <script src="js/toggle-menu.js"></script>
