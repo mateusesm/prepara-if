@@ -106,11 +106,10 @@
                                                 $num = $documents[$c]['id_gabarito'];
 
                                                 $num_cripto = md5($num);
-                                                echo $num_cripto;
 
                                                 echo "<div class='button-delete-documents'>
 
-                                                <a id='excluir_documento' href='delete-popup-documents.php?document=$num_cripto'>Excluir</a>
+                                                <a id='excluir_documento' href='delete-popup-documents.php?modalidade=Integrado&document=$num_cripto'>Excluir</a>
 
                                                 </div>";
 

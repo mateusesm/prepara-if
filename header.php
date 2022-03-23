@@ -15,8 +15,6 @@
                         <li><a href="#">Ajuda</a></li>
                         <li><a href="#">Fale conosco</a></li>
                         <li><a href="edit-profile.php">Editar Perfil</a></li>
-                        <li><a href="edit-profile.php">Editar Perfil</a></li>
-                        <li><a href="edit-profile.php">Editar Perfil</a></li>
                         <?php
 
                             if ($_SESSION['nivel'] == 2) {
@@ -25,7 +23,7 @@
 
                                 <li><a href="upload-files.php">Adicionar provas e gabaritos</a></li>
                                 <li><a href="reg_adm.php">Novo Administrador</a></li>
-                                <li><a href="#" id="del">Excluir Usuários</a></li>
+                                <li><a href="delete-users_adm.php" id="del">Excluir Usuários</a></li>
 
                             <?php
 

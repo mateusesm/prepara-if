@@ -263,13 +263,13 @@
     cursor: pointer;
     font-size: 1.4rem;
     max-width: 50%;
-    background-color: #CF231B;
+    background-color: #DC4955;
   
   }
 
   #section-downloads-2 #icards-downloads #ic-downloads .button-delete-documents > a:hover {
 
-    background-color: #DC4955;
+    background-color: #CF231B;
 
   }
 

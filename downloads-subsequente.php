@@ -38,11 +38,30 @@
 
             <section class="second" id="section-downloads-2">
 
+
+                <?php
+
+
+                    if (isset($_SESSION['msg-delete-documents'])) {
+
+                        echo $_SESSION['msg-delete-documents'];
+                        unset($_SESSION['msg-delete-documents']);
+                    }
+
+                    if (isset($_SESSION['div-delete-documents'])) {
+
+                        echo $_SESSION['div-delete-documents'];
+                        unset($_SESSION['div-delete-documents']);
+                        
+                    }
+
+                ?>
+
                 <div class="cards" id="icards-downloads">
 
                     <?php
 
-                        $select = $pdo->prepare("SELECT provas.prova, gabaritos.gabarito FROM provas JOIN gabaritos ON gabaritos.id_gabarito = provas.id_gabarito WHERE provas.modalidade = 'Subsequente' ORDER BY provas.prova DESC;");
+                        $select = $pdo->prepare("SELECT provas.prova, gabaritos.gabarito, provas.id_gabarito FROM provas JOIN gabaritos ON gabaritos.id_gabarito = provas.id_gabarito WHERE provas.modalidade = 'Subsequente' ORDER BY provas.prova DESC;");
 
                         $select->execute();
 
@@ -80,9 +99,15 @@
 
                                             if ($_SESSION['nivel'] == 2) {
 
+                                                $num = array();
+
+                                                $num = $documents[$c]['id_gabarito'];
+
+                                                $num_cripto = md5($num);
+
                                                 echo "<div class='button-delete-documents'>
 
-                                                <a href='delete-documents.php'>Excluir</a>
+                                                <a id='excluir_documento' href='delete-popup-documents.php?modalidade=Subsequente&document=$num_cripto'>Excluir</a>
 
                                                 </div>";
 

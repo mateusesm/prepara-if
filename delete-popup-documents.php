@@ -2,7 +2,9 @@
 
     require_once 'authentication.php';
 
-    $num_cripto = $_GET['document'];
+    $num_cripto = addslashes($_GET['document']);
+
+    $modalidade_get = addslashes($_GET['modalidade']);
 
     $_SESSION['div-delete-documents'] = "<div class='container-ic-delete'>
     
@@ -20,7 +22,7 @@
             <div class='buttons-delete'>
 
                 <div class='button-yes-delete'>
-                    <a href='delete-documents.php?document=$num_cripto'>Sim</a>
+                    <a href='delete-documents.php?modalidade=$modalidade_get&document=$num_cripto'>Sim</a>
                 </div>
 
                 <div class='button-no-delete'>
@@ -35,4 +37,15 @@
     
 </div>";
 
-    header('location: downloads-integrado.php');
+    if ($modalidade_get == 'Integrado') {
+
+        header("Location: downloads-integrado.php");
+
+
+    } else if ($modalidade_get == 'Subsequente') {
+
+        header("Location: downloads-subsequente.php");
+
+    }
+
+?>
