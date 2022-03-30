@@ -1,0 +1,134 @@
+#id-container-simulated {
+
+    display: flex;
+    justify-content: center;
+
+}
+
+#id-container-simulated #msg-sucesso {
+
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2%;
+    margin-top: 1rem;
+    background-color: rgba(50, 205, 50, 0.3);
+    border: none;
+    color: rgb(34, 139, 34);
+
+}
+
+#id-container-simulated #msg-normal {
+
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2%;
+    margin-top: 1rem;
+    background-color: #ffc09e;
+    border: none;
+    color: #F25600;
+
+}
+
+#id-container-simulated #msg-erro {
+
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2%;
+    margin-top: 1rem;
+    background-color: rgba(250, 128, 114, 0.3);
+    border: none;
+    color: rgb(165, 42, 42);
+
+}
+
+
+#id-container-simulated .container-simulated {
+
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+
+}
+
+#id-container-simulated .container-simulated h3 {
+
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 4rem;
+    text-shadow: rgba(0, 0, 0, .7) 0.1rem 0.1rem;
+    color: #346896;
+    font-family: 'Gluten', cursive;
+
+}
+
+#id-container-simulated .container-simulated form {
+
+    color: rgba(0, 0, 0, .7);
+
+}
+
+#id-container-simulated .container-simulated form fieldset{
+
+    margin-bottom: 2.4rem;
+    border-color: #346896;
+    border-radius: 10px;
+    padding: 0.8rem;
+}
+
+#id-container-simulated .container-simulated form fieldset legend{
+
+    color: #346896;
+    text-shadow: rgba(0, 0, 0, .7) 0.1rem 0.1rem;
+    font-family: 'Gluten', cursive;
+    font-size: 2.4rem;
+
+}
+
+#id-container-simulated .container-simulated form fieldset .questions {
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+#id-container-simulated .container-simulated form fieldset .questions p {
+
+    margin: 1rem;
+    text-align: justify;
+
+}
+
+#id-container-simulated .container-simulated form fieldset .questions label {
+
+    margin: 1.4rem;
+    color: rgba(0, 0, 0, .8);
+    font-weight: bolder;
+
+}
+
+#id-container-simulated .container-simulated form input#submit-questions {
+
+    display: block;
+    margin: 0 auto;
+    padding: 2rem;
+    width: 60%;
+    margin-bottom: 5rem;
+    color: white;
+    background-color: #346896;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.6rem;
+    font-weight: bolder;
+
+}
+
+#id-container-simulated .container-simulated form input#submit-questions:hover {
+
+    background-color: #3d7bb1;
+    cursor: pointer;
+
+}

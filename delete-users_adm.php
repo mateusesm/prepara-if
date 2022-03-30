@@ -41,10 +41,10 @@
                     }
 
                 ?>
+                
+                <h1>Relação de usuários cadastrados</h1>
 
-                <div class="table">
-
-                    <h1>Relação de usuários cadastrados</h1>
+                <div class="container-table">
         
                     <?php
 
@@ -56,23 +56,25 @@
 
                             $usuario = $select->fetchAll();
 
-                            echo "<table class='table-user'>
+                            echo "<table class='table'>
 
-                                    <tr class='linha-azul'>
+                                    <thead class='cabecalho'>
+                                        <tr>
 
-                                        <th>
-                                            Nome
-                                        </th>
+                                            <th>
+                                                Nome
+                                            </th>
 
-                                        <th>
-                                            E-mail
-                                        </th>
+                                            <th>
+                                                E-mail
+                                            </th>
 
-                                        <th>
-                                            Excluir Usuário
-                                        </th>
+                                            <th>
+                                                Excluir Usuário
+                                            </th>
 
-                                    </tr>";
+                                        </tr>
+                                    </thead>";
 
                             for ($c = 0; $c < count($usuario); $c++) {
 
@@ -80,21 +82,24 @@
 
                                 $id_del_user = md5($usuario[$c]['id_usuario']);
 
-                                echo "<tr class='linhas'>
+                                echo "<tbody>
+                                        <tr>
 
-                                        <th>
-                                            {$usuario[$c]['nome']}
-                                        </th>
+                                            <th>
+                                                {$usuario[$c]['nome']}
+                                            </th>
 
-                                        <th>
-                                            {$usuario[$c]['email']}
-                                        </th>
+                                            <th>
+                                                {$usuario[$c]['email']}
+                                            </th>
 
-                                        <th>";
-                                            echo "<button id='del-user'><a href='delete-popup-users.php?del_user=$id_del_user'>Excluir</a></button>";
-                                        echo "</th>";
+                                            <th>";
+                                                echo "<button id='del-user'><a href='delete-popup-users.php?del_user=$id_del_user'>Excluir</a></button>";
+                                            echo "</th>";
 
-                                echo "</tr>";
+                                    echo "</tr>
+
+                                    <tbody>";
 
                             }
 
@@ -104,43 +109,49 @@
 
                             $id_del_user = NULL;
 
-                            echo "<table class='table-user'>
+                            echo "<table class='table'>
 
-                                <tr class='linha-azul'>
+                                    <thead class='cabecalho'>
 
-                                    <th>
-                                        Nome
-                                    </th>
+                                        <tr>
 
-                                    <th>
-                                        E-mail
-                                    </th>
+                                            <th>
+                                                Nome
+                                            </th>
 
-                                    <th>
-                                        Excluir Usuário
-                                    </th>
+                                            <th>
+                                                E-mail
+                                            </th>
 
-                                </tr>";
+                                            <th>
+                                                Excluir Usuário
+                                            </th>
 
-                                echo "<tr class='linhas'>
+                                        </tr>
 
-                                <th>
-                                    Nenhum usuário encontrado
-                                </th>
+                                    </thead>";
 
-                                <th>
-                                    Nenhum e-mail encontrado
-                                </th>
+                                echo "<tbody>
+                                
+                                        <tr>
 
-                                <th>";
-                                    echo "<button id='del-user'><a href='delete-popup-users.php?del_user=$id_del_user'>Excluir</a></button>";
-                                echo "</th>";
+                                            <th>
+                                                Nenhum usuário encontrado
+                                            </th>
 
-                        echo "</tr>";
+                                            <th>
+                                                Nenhum e-mail encontrado
+                                            </th>
 
+                                            <th>";
+                                                echo "<button id='del-user'><a href='delete-popup-users.php?del_user=$id_del_user'>Excluir</a></button>";
+                                            echo "</th>";
+
+                                        echo "</tr>
+                        
+                                    </tbody>";
 
                             echo "</table>";
-  
 
                         }
 

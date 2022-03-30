@@ -164,6 +164,7 @@ div.ic-delete {
 
   display: flex;
   flex-direction: column;
+  z-index: 1000;
   align-self: center;
   align-items: center;
   position: absolute;

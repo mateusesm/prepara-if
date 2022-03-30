@@ -1,5 +1,5 @@
 .login #msg-sucesso {
-    width: 50%;
+    width: 70%;
     text-align: center;
     padding: 1%;
     margin: 0 auto;
@@ -11,7 +11,7 @@
   
 .login #msg-erro {
   
-    width: 50%;
+    width: 70%;
     text-align: center;
     padding: 1%;
     margin: 0 auto;
@@ -22,19 +22,21 @@
   
 }
 
-.login .table {
+.login .container-table {
 
     display: flex;
     flex-direction: column;
     align-items: center;
     align-self: center;
     padding-top: 1rem;
-    padding-bottom: 12rem;
+    padding-bottom: 1rem;
+    margin-bottom: 12rem;
     width: 100%;
+    overflow-x: auto;
 
 }
 
-.login .table > h1 {
+.login > h1 {
 
     font-size: 2.5rem;
     font-family: 'Gluten', cursive;
@@ -44,41 +46,38 @@
 
 }
 
-.login .table .table-user {
+.login .container-table .table {
 
-    position: relative;
     background-color: #ffffff;
     color: #ffffff;
     border: 1px solid #346896;
-    border-radius: 8px;
     border-spacing: 0px;
-    width: 60%;
+    width: 70%;
     
 }
 
 
-.login .table .table-user tr.linha-azul {
+.login .container-table .table thead.cabecalho {
 
     background-color: #346896;
 
 }
 
-.login .table .table-user tr.linhas {
+.login .container-table .table tbody {
 
     background-color: #fff;
     color: rgba(0, 0, 0, .7);
-
 }
 
-.login .table .table-user tr.linhas:hover {
+.login .container-table .table tbody:hover {
 
     background-color: rgba(0, 0, 0, .1);
     color: rgba(0, 0, 0, .7);
 
 }
 
-.login .table .table-user th {
-
+.login .container-table .table th {
+    
     border: 1px solid rgba(0, 0, 0, .2);
     padding: 1.6rem;
     text-align: center;
@@ -117,7 +116,17 @@ button#del-user a:hover {
 
 @media (max-width: 500px) {
 
-    /*Resolver responsividade da tabela*/
+    .login .container-table {
+
+        display: block;
     
+    }
+
+    .login .container-table .table{
+
+        margin: 0 auto;
+    
+    }
+
 }
   
