@@ -125,7 +125,7 @@
 
                                 }
 
-                                echo "<input id='submit-questions' type='submit' value='Enviar' name='submit-math-sub'>";
+                                echo "<input id='submit-questions' type='submit' value='Enviar' name='submit-simulated'>";
 
                             } else {
 

@@ -124,7 +124,7 @@
                                     }
                                 }
 
-                                echo "<input id='submit-questions' type='submit' value='Enviar' name='submit-portuguese-int'>";
+                                echo "<input id='submit-questions' type='submit' value='Enviar' name='submit-simulated'>";
 
                             } else {
 

@@ -125,7 +125,7 @@
 
                                 }
 
-                                echo "<input id='submit-questions' type='submit' value='Enviar' name='submit-portuguese-sub'>";
+                                echo "<input id='submit-questions' type='submit' value='Enviar' name='submit-simulated'>";
 
                             } else {
 

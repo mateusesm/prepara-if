@@ -11,7 +11,7 @@
 
         $num += 1;
 
-        if (!empty($_POST['submit-math-int']) && !empty($_POST['alt-'.$num])) {
+        if (!empty($_POST['submit-simulated']) && !empty($_POST['alt-'.$num])) {
         
             $res[$c] = $_POST['alt-'.$num];
 
@@ -56,7 +56,7 @@
 
     }
 
-    if ($_SESSION['certas'] > $_SESSION['erradas']) {
+    if (($_SESSION['certas'] > $_SESSION['erradas']) && ($_SESSION['certas'] && $_SESSION['erradas'] != 0)) {
 
         $_SESSION['msg'] = "<div id='msg-sucesso'>Parabéns! Você acertou {$_SESSION['certas']} / {$_SESSION['questions']}</div>";
 
@@ -64,7 +64,7 @@
 
         $_SESSION['msg'] = "<div id='msg-normal'>Nada mal, mas fique esperto! Você acertou {$_SESSION['certas']} / {$_SESSION['questions']}</div>";
 
-    } else if ($_SESSION['certas'] < $_SESSION['erradas']) {
+    } else if (($_SESSION['certas'] < $_SESSION['erradas']) && ($_SESSION['certas'] && $_SESSION['erradas'] != 0)) {
 
         $_SESSION['msg'] = "<div id='msg-erro'>Alerta vermelho! Vá estudar agora! Você acertou {$_SESSION['certas']} / {$_SESSION['questions']}</div>";
 
