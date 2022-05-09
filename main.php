@@ -1,5 +1,7 @@
 <?php
     require_once 'authentication.php';
+    require_once 'classes/Usuario.php';
+    require 'error.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -29,31 +31,12 @@
 
                         <?php
 
-                            if (!empty($_SESSION['logado'])) {
+                            $u = new Usuario();
+                            
+                            $bemVindo = $u->bemVindo();
 
-                                $select = $pdo->prepare("SELECT nome FROM usuarios WHERE id_usuario = :id");
+                            echo $bemVindo;
 
-                                $select->bindValue(":id",$_SESSION['id_usuario']);
-                                $select->execute();
-
-                                if ($select->rowCount() > 0) {
-
-                                    $nome = $select->fetch();
-
-                                    $nome_usuario = $nome['nome'];
-
-                                    if ($_SESSION['nivel'] == 1) {
-
-                                        echo "Que bom ter você aqui, " . $nome_usuario . " !";
-
-                                    } else if ($_SESSION['nivel'] == 2) {
-
-                                        echo "Bem-vindo (a), ADM " . $nome_usuario . " !";
-
-                                    }
-
-                                }  
-                            }
                         ?>
 
                     </h1>

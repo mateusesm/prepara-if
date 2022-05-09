@@ -1,12 +1,20 @@
 <?php
 
     require_once 'authentication.php';
+    require_once 'classes/Usuario.php';
+    require 'error.php';
 
-    if (isset($_POST['password-popup'])) {
+    if (!empty($_POST['delete-acount'])) {
 
         $senha_popup = addslashes($_POST['password-popup']);
 
-        if (!empty($senha_popup)) {
+        $u = new Usuario();
+
+        $header = $u->deletarConta($senha_popup);
+
+        header($header);
+
+        /*if (!empty($senha_popup)) {
 
             $select = $pdo->prepare("SELECT senha FROM usuarios WHERE id_usuario = :id");
             $select->bindValue(":id", $_SESSION['id_usuario']);
@@ -14,9 +22,9 @@
                                                 
             if ($select->rowCount() > 0) {
 
-                $data = $select->fetch();
+                $dados = $select->fetch();
 
-                $senha_usuario = $data['senha'];
+                $senha_usuario = $dados['senha'];
 
                 if ($senha_usuario == md5($senha_popup)) {
 
@@ -62,7 +70,7 @@
     } else {
 
         $_SESSION['msg-delete-acount'] = "<div id='msg-erro'>Informe sua senha para excluir sua conta 1!</div>";
-        header("Location: edit-profile.php");
+        header("Location: edit-profile.php");*/
 
     }
 
