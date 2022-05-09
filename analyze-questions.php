@@ -1,11 +1,15 @@
 <?php
 
     require_once 'authentication.php';
+    require_once 'classes/Simulado.php';
+    require 'error.php';
 
     $res = array();
 
     $_SESSION['certas'] = 0;
     $_SESSION['erradas'] = 0;
+
+    $num = 0;
 
     for ($c = 0; $c < $_SESSION['questions']; $c++) {
 
@@ -15,20 +19,9 @@
         
             $res[$c] = $_POST['alt-'.$num];
 
-            $select = $pdo->prepare("SELECT alternativa FROM alternativas WHERE alternativa = :alt AND correta = 1");
-            $select->bindValue(":alt", $res[$c]);
-            $select->execute();
+            $s = new Simulado();
 
-            if($select->rowCount() > 0) {
-
-                $_SESSION['certas'] += 1;
-
-
-            } else {
-
-                $_SESSION['erradas'] += 1;
-
-            }
+            $s->analisarQuestoes($res[$c]);
 
         } else {
 
@@ -56,7 +49,7 @@
 
     }
 
-    if (($_SESSION['certas'] > $_SESSION['erradas']) && ($_SESSION['certas'] && $_SESSION['erradas'] != 0)) {
+    if (($_SESSION['certas'] > $_SESSION['erradas']) && ($_SESSION['certas'] > 0)) {
 
         $_SESSION['msg'] = "<div id='msg-sucesso'>Parabéns! Você acertou {$_SESSION['certas']} / {$_SESSION['questions']}</div>";
 
@@ -64,7 +57,7 @@
 
         $_SESSION['msg'] = "<div id='msg-normal'>Nada mal, mas fique esperto! Você acertou {$_SESSION['certas']} / {$_SESSION['questions']}</div>";
 
-    } else if (($_SESSION['certas'] < $_SESSION['erradas']) && ($_SESSION['certas'] && $_SESSION['erradas'] != 0)) {
+    } else if (($_SESSION['certas'] < $_SESSION['erradas']) && ($_SESSION['erradas'] > 0)) {
 
         $_SESSION['msg'] = "<div id='msg-erro'>Alerta vermelho! Vá estudar agora! Você acertou {$_SESSION['certas']} / {$_SESSION['questions']}</div>";
 

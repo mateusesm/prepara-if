@@ -1,5 +1,7 @@
 <?php
     require_once 'authentication.php';
+    require_once 'classes/Simulado.php';
+    require 'error.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -58,25 +60,22 @@
 
                             <?php
 
-                                $selectQuestions = $pdo->prepare("SELECT questoes.id_questao, questoes.questao FROM questoes WHERE questoes.modalidade = 'Integrado' AND questoes.assunto = 'Matematica' order by RAND()");
+                                $modalidade = 'Integrado';
+                                $materia = 'Matematica';
 
-                                $selectQuestions->execute();
+                                $s = new Simulado();
 
-                                if ($selectQuestions->rowCount() > 0) {
+                                $questions = $s->buscarQuestoes($modalidade,$materia);
 
-                                    $questions = $selectQuestions->fetchAll(PDO::FETCH_ASSOC);
+                                if ($questions > 0) {
 
-                                    $_SESSION['questions'] = count($questions);
+                                    $num = 0;
 
                                     for ($q = 0; $q < count($questions); $q++) {
 
-                                        $selectAlt = $pdo->prepare("SELECT alternativas.alternativa FROM alternativas WHERE alternativas.id_questao = :id_questao order by RAND()");
-                                        $selectAlt->bindValue(":id_questao", $questions[$q]['id_questao']);
-                                        $selectAlt->execute();
+                                        $alts = $s->buscarAlternativas($questions[$q]['id_questao']);
 
-                                        if ($selectAlt->rowCount() > 0) {
-
-                                            $alts = $selectAlt->fetchAll(PDO::FETCH_ASSOC);
+                                        if ($alts > 0) {
                                         
                                             $num += 1;
 
@@ -89,7 +88,6 @@
                                                     <p>{$questions[$q]['questao']}:</p>
 
                                                     <p>Marque a alternativa correta:</p>";
-
 
                                                 for ($a = 0; $a < count($alts); $a++) {
                         
@@ -116,31 +114,42 @@
                                                    echo "<label>$l. <input type='radio' value='{$alts[$a]['alternativa']}' name='alt-$num' id='a'> {$alts[$a]['alternativa']}</label>";
 
                                                 }
+
+                                            ?>
                         
-                                            echo "</div>
+                                                </div>
                                             
-                                            </fieldset>";
+                                            </fieldset>
+
+                                            <?php
 
                                         }
-
                                             
                                     }
 
-                                    echo "<input id='submit-questions' type='submit' value='Enviar' name='submit-simulated'>";
+                                    ?>
+
+                                    <input id='submit-questions' type='submit' value='Enviar' name='submit-simulated'>
+
+                                    <?php
 
                                 } else {
 
-                                    echo "<fieldset>
+                                    ?>
 
-                                    <legend>Nada encontrado</legend>
+                                    <fieldset>
+
+                                        <legend>Nada encontrado</legend>
                                     
-                                    <div class='questions'>
+                                        <div class='questions'>
 
-                                        <p>É possível que as questões e suas respectivas alternativas ainda não foram cadastradas para este simulado.</p>
-            
-                                    </div>
+                                            <p>É possível que as questões e suas respectivas alternativas ainda não foram cadastradas para este simulado.</p>
+                
+                                        </div>
                                 
-                                    </fieldset>";
+                                    </fieldset>
+
+                                    <?php
 
                                 }
 

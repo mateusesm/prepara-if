@@ -1,5 +1,9 @@
 <?php
+
     session_start();
+
+    require 'error.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -42,7 +46,7 @@
 
                     <input class="box" id="password" type="password" name="password" maxlength="20" placeholder="Senha"></p>
 
-                    <input class="button" type="submit" value="Entrar">
+                    <input class="button" type="submit" value="Entrar" name="entrar">
 
                     <div class="sub-text"><p><a href="recover-password.php" id="log">Esqueceu a senha? Clique aqui!</a></p></div>
 
@@ -50,53 +54,31 @@
 
                     <?php
 
-                        if (isset($_POST['mail'])) {
-
-                            $_SESSION['logado'] = addslashes($_POST['mail']);
+                        if (!empty($_POST['entrar'])) {
 
                             $email = addslashes($_POST['mail']);
                             $senha = addslashes($_POST['password']);
 
-                            if (!empty($email) && !empty($senha)) {
+                            require_once 'classes/Usuario.php';
 
-                                include 'php/conexao.php';
+                            $u = new Usuario();
 
-                                $select = $pdo->prepare("SELECT id_usuario, nivel FROM usuarios WHERE email = :e AND senha = :s");
+                            $div = $u->logar($email,$senha);
 
-                                $select->bindValue(":e",$email);
-                                $select->bindValue(":s",md5($senha));
-                                $select->execute();
+                            if ($div) {
 
-                                if ($select->rowCount() > 0) {
+                                header('location: main.php');
 
-                                    $data = $select->fetch();
+                            }else{
 
-                                    $_SESSION['id_usuario'] = $data['id_usuario'];
-                                    $_SESSION['nivel'] = $data['nivel'];
+                                if (isset($_SESSION['erro-login'])) {
 
-                                    header('location: main.php');
-
-                                } else {
-
-                                    ?>
-
-                                    <div id="msg-erro">E-mail e/ou senha estão incoretos!</div>
-
-                                    <?php
-
+                                    echo $_SESSION['erro-login'];
+                                    unset($_SESSION['erro-login']);
                                 }
-
-
-                            } else {
-
-                                ?>
-
-                                <div id="msg-erro">Preencha todos os campos!</div>
-
-                                <?php
+        
 
                             }
-
 
                         }
 

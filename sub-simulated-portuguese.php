@@ -1,5 +1,7 @@
 <?php
     require_once 'authentication.php';
+    require_once 'classes/Simulado.php';
+    require 'error.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -56,94 +58,102 @@
 
                     <form action="analyze-questions.php?modalidade=subsequente-portugues" method="POST">
 
-                        <?php
+                       <?php
 
-                            $selectQuestions = $pdo->prepare("SELECT questoes.id_questao, questoes.questao FROM questoes WHERE questoes.modalidade = 'Subsequente' AND questoes.assunto = 'Portugues' order by RAND()");
+                                $modalidade = 'Subsequente';
+                                $materia = 'Portugues';
 
-                            $selectQuestions->execute();
+                                $s = new Simulado();
 
-                            if ($selectQuestions->rowCount()) {
+                                $questions = $s->buscarQuestoes($modalidade,$materia);
 
-                                $questions = $selectQuestions->fetchAll(PDO::FETCH_ASSOC);
+                                if ($questions > 0) {
 
-                                $_SESSION['questions'] = count($questions);
+                                    $num = 0;
 
-                                for ($c = 0; $c < count($questions); $c++) {
+                                    for ($q = 0; $q < count($questions); $q++) {
 
-                                    $selectAlt = $pdo->prepare("SELECT alternativas.alternativa FROM alternativas WHERE alternativas.id_questao = :id_questao order by RAND()");
-                                    $selectAlt->bindValue(":id_questao", $questions[$c]['id_questao']);
-                                    $selectAlt->execute();
+                                        $alts = $s->buscarAlternativas($questions[$q]['id_questao']);
 
-                                    if ($selectAlt->rowCount()) {
+                                        if ($alts > 0) {
+                                        
+                                            $num += 1;
 
-                                        $alts = $selectAlt->fetchAll(PDO::FETCH_ASSOC);
-                                    
-                                        $num += 1;
+                                            echo "<fieldset>
 
-                                        echo "<fieldset>
+                                                <legend>Questão 0$num</legend>
+                                                
+                                                <div class='questions'>
 
-                                            <legend>Questão 0$num</legend>
-                                            
-                                            <div class='questions'>
+                                                    <p>{$questions[$q]['questao']}:</p>
 
-                                                <p>{$questions[$q]['questao']}:</p>
+                                                    <p>Marque a alternativa correta:</p>";
 
-                                                <p>Marque a alternativa correta:</p>";
+                                                for ($a = 0; $a < count($alts); $a++) {
+                        
+                                                    switch ($a) {
 
+                                                        case 0:
+                                                            $l = 'A';
+                                                            break;
 
-                                            for ($a = 0; $a < count($alts); $a++) {
-                    
-                                                switch ($a) {
+                                                        case 1:
+                                                            $l = 'B';
+                                                            break;
 
-                                                    case 0:
-                                                        $l = 'A';
-                                                        break;
+                                                        case 2:
+                                                            $l = 'C';
+                                                            break;
 
-                                                    case 1:
-                                                        $l = 'B';
-                                                        break;
+                                                        case 3:
+                                                            $l = 'D';
+                                                            break;
 
-                                                    case 2:
-                                                        $l = 'C';
-                                                        break;
+                                                    }
 
-                                                    case 3:
-                                                        $l = 'D';
-                                                        break;
+                                                   echo "<label>$l. <input type='radio' value='{$alts[$a]['alternativa']}' name='alt-$num' id='a'> {$alts[$a]['alternativa']}</label>";
 
                                                 }
 
-                                               echo "<label>$l. <input type='radio' value='{$alts[$a]['alternativa']}' name='alt-$num' id='a'> {$alts[$a]['alternativa']}</label>";
+                                            ?>
+                        
+                                                </div>
+                                            
+                                            </fieldset>
 
-                                            }
-                    
-                                        echo "</div>
-                                        
-                                        </fieldset>";
+                                            <?php
 
+                                        }
+                                            
                                     }
+
+                                    ?>
+
+                                    <input id='submit-questions' type='submit' value='Enviar' name='submit-simulated'>
+
+                                    <?php
+
+                                } else {
+
+                                    ?>
+
+                                    <fieldset>
+
+                                        <legend>Nada encontrado</legend>
+                                    
+                                        <div class='questions'>
+
+                                            <p>É possível que as questões e suas respectivas alternativas ainda não foram cadastradas para este simulado.</p>
+                
+                                        </div>
+                                
+                                    </fieldset>
+
+                                    <?php
 
                                 }
 
-                                echo "<input id='submit-questions' type='submit' value='Enviar' name='submit-simulated'>";
-
-                            } else {
-
-                                echo "<fieldset>
-
-                                <legend>Nada encontrado</legend>
-                                
-                                <div class='questions'>
-
-                                    <p>É possível que as questões e suas respectivas alternativas ainda não foram cadastradas para este simulado.</p>
-
-                                </div>
-
-                                </fieldset>";
-
-                            }
-
-                        ?>
+                            ?>
                         
                     </form>
 

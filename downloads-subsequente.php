@@ -1,5 +1,7 @@
 <?php
     require_once 'authentication.php';
+    require_once 'classes/Documento.php';
+    require 'error.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -61,37 +63,39 @@
 
                     <?php
 
-                        $select = $pdo->prepare("SELECT provas.prova, gabaritos.gabarito, provas.id_gabarito FROM provas JOIN gabaritos ON gabaritos.id_gabarito = provas.id_gabarito WHERE provas.modalidade = 'Subsequente' ORDER BY provas.prova DESC;");
+                        $d = new Documento();
 
-                        $select->execute();
+                        $modalidade = 'Subsequente';
 
-                        if ($select->rowCount() > 0) {
+                        $documentos = $d->buscarDocumentos($modalidade);
+
+                        if ($documentos > 0) {
 
                             $documents = $select->fetchAll(PDO::FETCH_ASSOC);
 
-                                for ($c = 0; $c < count($documents); $c++) {
+                                for ($c = 0; $c < count($documentos); $c++) {
 
                                     echo "<div class='card' id='ic-downloads'>
                                             
                                             <img src='images/pdf.png' alt='PDF'/>
 
-                                            <a href='pdfs/subsequente/provas/" . $documents[$c]['prova'] . "'target='_blank'>
+                                            <a href='pdfs/subsequente/provas/" . $documentos[$c]['prova'] . "'target='_blank'>
 
                                                 <p id='prova'>
 
                                                     <span>Baixe já:</span>
-                                                    <span>" . $documents[$c]['prova'] . "</span>
+                                                    <span>" . $documentos[$c]['prova'] . "</span>
 
                                                 </p>
 
                                             </a>
 
-                                            <a href='pdfs/subsequente/gabaritos/" . $documents[$c]['gabarito'] . "' target='_blank'>
+                                            <a href='pdfs/subsequente/gabaritos/" . $documentos[$c]['gabarito'] . "' target='_blank'>
 
                                                 <p id='gabarito'>
 
                                                     <span>Baixe já:</span>
-                                                    <span>" . $documents[$c]['gabarito'] . "</span>
+                                                    <span>" . $documentos[$c]['gabarito'] . "</span>
 
                                                 </p>
 
@@ -101,7 +105,7 @@
 
                                                 $num = array();
 
-                                                $num = $documents[$c]['id_gabarito'];
+                                                $num = $documentos[$c]['id_gabarito'];
 
                                                 $num_cripto = md5($num);
 
@@ -118,20 +122,24 @@
 
                         } else {
 
-                            echo "<div class='card' id='ic-downloads'>
+                        ?>
+
+                            <div class='card' id='ic-downloads'>
                                     
-                                            <img  id='sad-face' src='images/sad-face.jpg' alt='Sad face'/>
+                                <img  id='sad-face' src='images/sad-face.jpg' alt='Sad face'/>
 
-                                            <a>
+                                    <a>
 
-                                                <p id='unavailable'>
+                                        <p id='unavailable'>
 
-                                                    <span>Nenhuma prova ou gabarito disponíveis</span>
+                                            <span>Nenhuma prova ou gabarito disponíveis</span>
 
-                                                </p>
+                                        </p>
 
-                                            </a>
-                                    </div>";
+                                    </a>
+                            </div>";
+
+                        <?php
                             
                         }
 

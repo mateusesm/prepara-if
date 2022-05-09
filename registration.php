@@ -1,3 +1,8 @@
+<?php
+
+    require 'error.php';
+    
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -50,73 +55,42 @@
 
                     <input class="box" id="cPassword" type="password" name="cPassword" maxlength="20" placeholder="Confirmar senha"></p>
 
-                    <input class="button" type="submit" value="Cadastrar">
+                    <input class="button" type="submit" value="Cadastrar" name="cadastrar">
 
                     <div class="sub-text"><p>Já tem uma conta?<a href="login.php" id="log">Faça login!</a></p></div>
 
                     <?php
 
-                        if (isset($_POST['name'])) {
+                        if (!empty($_POST['cadastrar'])) {
 
                             $nome = addslashes($_POST['name']);
                             $email = addslashes($_POST['mail']);
                             $senha = addslashes($_POST['password']);
                             $confSenha = addslashes($_POST['cPassword']);
 
-                            include 'php/conexao.php';
+                            require_once 'classes/Usuario.php';
 
-                                if ((!empty($nome) && !empty($email) && !empty($senha))) {
+                            $u = new Usuario();
 
-                                    if ($senha == $confSenha) {
+                            $div = $u->cadastrar($nome,$email,$senha,$confSenha);
 
-                                        $select = $pdo->prepare("SELECT id_usuario FROM usuarios WHERE email = :e");
-                                        $select->bindValue(":e",$email);
-                                        $select->execute();
-                                        
-                                        if ($select->rowCount() > 0) {
+                            if ($div) {
 
-                                            ?>
+                                if (isset($_SESSION['sucesso-cadastro'])) {
 
-                                            <div id="msg-erro">Email já cadastrado!</div>
-
-                                            <?php
-                                            
-                                        } else {
-
-                                            $insert = $pdo->prepare("INSERT INTO usuarios(nome, email, senha) VALUES (:n, :e, :s)");
-            
-                                            $insert->bindValue(":n",$nome);
-                                            $insert->bindValue(":e",$email);
-                                            $insert->bindValue(":s",md5($senha));
-                                            $insert->execute();
-
-                                            ?>
-
-                                            <div id="msg-sucesso">Cadastro realizado com sucesso!</div>
-
-                                            <?php
-
-                                        }
-
-                                    } else {
-
-                                        ?>
-
-                                        <div id="msg-erro">Senha e Confirmar Senha não correspondem!</div>
-
-                                        <?php
-
-                                    }
-        
-                                } else {
-                                    
-                                    ?>
-
-                                    <div id="msg-erro">Preencha todos os campos!</div>
-
-                                    <?php
-                                        
+                                    echo $_SESSION['sucesso-cadastro'];
+                                    unset($_SESSION['sucesso-cadastro']);
                                 }
+
+                            }else {
+
+                                if (isset($_SESSION['erro-cadastro'])) {
+
+                                    echo $_SESSION['erro-cadastro'];
+                                    unset($_SESSION['erro-cadastro']);
+                                }
+
+                            }
 
                         }
                     ?>  
