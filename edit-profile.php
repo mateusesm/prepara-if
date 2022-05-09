@@ -1,42 +1,30 @@
 <?php
     require_once 'authentication.php';
+    require_once 'classes/Usuario.php';
+    require 'error.php';
 
-    $id_usuario = $_SESSION['id_usuario'];
+    $u = new Usuario();
 
-    $select = $pdo->prepare("SELECT nome, email, senha FROM usuarios WHERE id_usuario = :iu");
-    $select->bindValue(":iu",$id_usuario);
-    $select->execute();
+    $dadosUsuario = $u->buscarDadosUsuario();
 
-    if ($select->execute()) {
+    if (!empty($dadosUsuario)) {
 
-        if ($select->rowCount() > 0) {
+        $nome_usuario = $dadosUsuario['nome'];
 
-            $data = $select->fetch();
+        $email_usuario = $dadosUsuario['email'];
 
-            $nome_usuario = $data['nome'];
+        $senha_usuario = $dadosUsuario['senha'];
 
-            $email_usuario = $data['email'];
-
-            $senha_usuario = $data['senha'];
-
-        } else {
-
-            $nome_usuario = "";
-
-            $email_usuario = "";
-
-            $erro = "<div id='msg-erro'>Erro ao carregar suas informações de login! Recarregue a página para tentar novamente</div>";
-
-        }
-    } else {
+    }else {
 
         $nome_usuario = "";
 
         $email_usuario = "";
 
-        $erro = "<div id='msg-erro'>Erro ao carregar suas informações de login! Recarregue a página para tentar novamente</div>";
+        $senha_usuario = "";
 
     }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -85,31 +73,39 @@
 
                             <?php
 
-                                if (!empty($_POST['name']) && !empty($_POST['mail']) && !empty($_POST['update-user'])) {
+                                if (!empty($_POST['update-user'])) {
 
                                     $nome_usuario = addslashes($_POST['name']);
                                     $email_usuario = addslashes($_POST['mail']);
 
-                                    $update = $pdo->prepare("UPDATE usuarios SET nome = :n, email = :e WHERE id_usuario = :iu");
-                                    $update->bindValue(":n",$nome_usuario);
-                                    $update->bindValue(":e",$email_usuario);
-                                    $update->bindValue(":iu",$id_usuario);
-                                    $update->execute();
+                                    $div = $u->editarUsuario($nome_usuario,$email_usuario);
 
-                                    if ($update->execute()) {
+                                    if ($div) {
 
-                                        echo "<div id='msg-sucesso'>Dados atualizados com sucesso!</div>";
+                                        ?>
 
-                                    } else {
+                                            <div id='msg-sucesso'>Dados de usuário atualizados com sucesso!</div>
 
-                                        echo "<div id='msg-erro'>ERRO! Tente novamente</div>";
+                                        <?php
+
+                                    }else {
+
+                                        ?>
+
+                                            <div id='msg-erro'>ERRO! Tente novamente</div>
+
+                                        <?php
 
                                     }
 
             
                                 } else {
 
-                                    echo $erro;
+                                    if (isset($_SESSION['erro-buscar-dados'])) {
+
+                                        echo $_SESSION['erro-buscar-dados'];
+                                        unset($_SESSION['erro-buscar-dados']);
+                                    }
 
                                 }
 
@@ -143,43 +139,32 @@
 
                             <?php
 
-                                if (!empty($_POST['password']) && !empty($_POST['new-password']) && !empty($_POST['c-new-password']) && !empty($_POST['update-password'])) {
+                                if (!empty($_POST['update-password'])) {
 
                                     $senha = addslashes($_POST['password']);
                                     $novaSenha = addslashes($_POST['new-password']);
                                     $cNovaSenha = addslashes($_POST['c-new-password']);
 
-                                    if ($senha_usuario == md5($senha)) {
+                                    $div = $u->editarSenhaUsuario($senha,$novaSenha,$cNovaSenha);
 
-                                        if ($novaSenha == $cNovaSenha) {
+                                    if ($div) {
 
-                                            $update = $pdo->prepare("UPDATE usuarios SET senha = :ns WHERE id_usuario = :iu");
-                                            $update->bindValue(":ns",md5($novaSenha));
-                                            $update->bindValue(":iu",$id_usuario);
-                                            $update->execute();
-
-                                            if ($update->execute()) {
-
-                                                echo "<div id='msg-sucesso'>Dados atualizados com sucesso!</div>";
-            
-                                            } else {
-            
-                                                echo "<div id='msg-erro'>ERRO! Tente novamente</div>";
-            
-                                            }
-
-                                        } else {
-
-                                            echo "<div id='msg-erro'>Nova senha e Confirmar nova senha não correspondem!</div>";
-
+                                        if (isset($_SESSION['sucesso-editar-senha'])) {
+        
+                                            echo $_SESSION['sucesso-editar-senha'];
+                                            unset($_SESSION['sucesso-editar-senha']);
                                         }
-
-                                    } else {
-
-                                        echo "<div id='msg-erro'>Erro! Senha atual incorreta</div>";
-
+        
+                                    }else {
+        
+                                        if (isset($_SESSION['erro-editar-senha'])) {
+        
+                                            echo $_SESSION['erro-editar-senha'];
+                                            unset($_SESSION['erro-editar-senha']);
+                                        }
+        
                                     }
-
+                                    
                                 }
 
                             ?>

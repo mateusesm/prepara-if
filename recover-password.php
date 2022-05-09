@@ -1,13 +1,8 @@
 <?php
     session_start();
 
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\SMTP;
-    use PHPMailer\PHPMailer\Exception;
-
-    require 'lib/vendor/autoload.php';
-
-    $mail = new PHPMailer(true);
+    require_once 'classes/Usuario.php';
+    require 'error.php';
 
 ?>
 <!DOCTYPE html>
@@ -55,94 +50,49 @@
                         if (isset($_POST['mail']) && !empty($_POST['enviar'])) {
 
                             $email = addslashes($_POST['mail']);
-                            
-                            include 'php/conexao.php';
 
                             if (!empty($email)) {
 
-                                $select = $pdo->prepare("SELECT id_usuario, nome FROM usuarios WHERE email = :e");
-                                $select->bindValue(":e",$email);
-                                $select->execute();
+                                $u = new Usuario();
+
+                                $dadosUsuario = $u->buscarDadosUsuario($email);
                                         
-                                if ($select->rowCount() > 0) {
+                                if ($dadosUsuario > 0) {
 
-                                    $user = $select->fetch();
-                                    $id_usuario = $user['id_usuario'];
-                                    $nome_usuario = $user['nome'];
-
+                                    $id_usuario = $dadosUsuario['id_usuario'];
+                                    $nome_usuario = $dadosUsuario['nome'];
 
                                     $key_recover_password = md5($id_usuario);
-                                        
-                                    $update = $pdo->prepare("UPDATE usuarios SET chave_recuperar_senha = :k WHERE id_usuario = :id LIMIT 1");
-                                    $update->bindValue(":k",$key_recover_password);
-                                    $update->bindValue(":id",$id_usuario);
-                                    $update->execute();
 
-                                    if ($update->execute()) {
+                                    $retorno = $u->enviarEmailRecuperacao($key_recover_password,$id_usuario,$nome_usuario,$email);
 
-                                        $link = "http://localhost/prepara-if/update-password.php?key=$key_recover_password";
+                                    if ($retorno['trueOrfalse']) {
 
-                                        try {
+                                        header($retorno['header']);
 
-                                            $mail->CharSet = 'UTF-8';
-                                            //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-                                            $mail->isSMTP();                                            //Send using SMTP
-                                            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-                                            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                                            $mail->Username   = 'prepara.ifrn@gmail.com';                     //SMTP username
-                                            $mail->Password   = 'preparapropreparaif';                               //SMTP password
-                                            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
-                                            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-                                        
-                                            $mail->setFrom('prepara.ifrn@gmail.com', 'Prepara IF');
-                                            $mail->addAddress($email, $nome);     //Add a recipient
+                                    }else {
 
-                                            $mail->isHTML(true);                                  //Set email format to HTML
-                                            $mail->Subject = "RECUPERAR SENHA PREPARA IF";
-
-
-                                            $mail->Body    = "Prezado (a) $nome_usuario. <br/><br/>
-                                                                Você solicitou alteração de senha.<br/><br/>
-                                                                Para continuar o processo de recuperação de sua senha, clique no link abaixo ou cole o endereço no seu navegador:<br/><br/>
-                                                                <a href='$link'>$link</a> <br/><br/>
-                                                                Se você não solicitou essa alteração, nenhuma ação é necessária. Sua senha permanecerá a mesma até que você solicite mudança.<br/><br/>";
-
-
-                                            $mail->AltBody = "Prezado (a) $nome_usuario. \n\n 
-                                                                Você solicitou alteração de senha. \n\n
-                                                                Para continuar o processo de recuperação de sua senha, clique no link abaixo ou cole o endereço no seu navegador:\n\n
-                                                                $link \n\n
-                                                                Se você não solicitou essa alteração, nenhuma ação é necessária. Sua senha permanecerá a mesma até que você solicite mudança. \n\n";
-
-                                            
-                                            $mail->send();
-
-                                            $_SESSION['msg'] = "<div id='msg-sucesso'>Enviamos um e-mail com instruções de como recuperar sua senha. Acesse sua caixa de e-mails para recuperá-la.</div>";
-
-                                            header('location: login.php');
-
-
-                                        }catch (Exception $e){
-
-                                            echo "<div id='msg-erro'>Email não enviado. ERRO: {$mail->ErrorInfo}</div>";
-                                            
-                                        }
-
-                                    } else {
-
-                                        echo "<div id='msg-erro'>Erro! Tente novamente</div>";
+                                        echo $retorno['header'];
 
                                     }
                                             
                                 } else {
 
-                                    echo "<div id='msg-erro'>Não há cadastro no site para o email digitado</div>";
+                                ?>
+
+                                    <div id='msg-erro'>Não há cadastro no site para o email digitado</div>
+
+                                <?php
 
                                 }
 
                             } else {
+
+                            ?>
                                     
-                                echo "<div id='msg-erro'>Preencha todos os campos!</div>";
+                                <div id='msg-erro'>Preencha todos os campos!</div>
+
+                            <?php
                                         
                             }
 

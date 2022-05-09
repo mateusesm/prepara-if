@@ -1,14 +1,22 @@
 <?php
 
     require_once 'authentication_adm.php';
-
-    $id_del_user = $_GET['del_user'];
+    require_once 'classes/Usuario.php';
+    require 'error.php';
 
     if (isset($_POST['password-popup'])) {
 
+        $id_del_user = $_GET['del_user'];
+
         $senha_popup = addslashes($_POST['password-popup']);
 
-        if (!empty($senha_popup)) {
+        $u = new Usuario();
+
+        $header = $u->deletarUsuario($senha_popup,$id_del_user);
+
+        header($header);
+
+        /*if (!empty($senha_popup)) {
 
             $select = $pdo->prepare("SELECT senha FROM usuarios WHERE id_usuario = :id");
             $select->bindValue(":id", $_SESSION['id_usuario']);
@@ -81,8 +89,8 @@
 
     } else {
 
-        $_SESSION['msg-delete-user'] = "<div id='msg-erro'>Informe sua senha para excluir o usuário 1!</div>";
-        header("Location: delete-users_adm.php");
+        $_SESSION['msg-delete-user'] = "<div id='msg-erro'>Informe sua senha para excluir o usuário!</div>";
+        header("Location: delete-users_adm.php");*/
 
     }
 

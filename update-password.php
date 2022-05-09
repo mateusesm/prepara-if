@@ -1,3 +1,11 @@
+<?php
+    session_start();
+
+    require_once 'classes/Usuario.php';
+    require 'error.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -38,89 +46,25 @@
 
                 <?php
 
-                    session_start();
-
-                    include 'php/conexao.php';
-
                     $key = addslashes($_GET['key']);
 
-                    if (!empty($key)) {
+                    if (isset($_POST['password']) && !empty($_POST['update'])) {
 
-                        $select = $pdo->prepare("SELECT id_usuario FROM usuarios WHERE chave_recuperar_senha = :ch");
-                        $select->bindValue(":ch",$key);
-                        $select->execute();
-                        
-                        if ($select->rowCount() > 0) {
+                        $novaSenha = addslashes($_POST['password']);
+                        $confSenha = addslashes($_POST['cPassword']);
 
-                            $id = $select->fetch();
-                            $id_usuario = $id['id_usuario'];
+                        $u = new Usuario();
 
-                            if (isset($_POST['password']) && !empty($_POST['update'])) {
+                        $header = $u->mudarSenha($key,$novaSenha,$confSenha);
 
-                                $key  = 'NULL';
-                                $novaSenha = addslashes($_POST['password']);
-                                $confSenha = addslashes($_POST['cPassword']);
-        
-                                if (!empty($novaSenha) && !empty($confSenha)) {
+                        header($header);
 
-                                    if ($novaSenha == $confSenha) {
-        
-                                        $update = $pdo->prepare("UPDATE usuarios SET senha = :ns, chave_recuperar_senha = :ch WHERE id_usuario = :iu");
-                                        $update->bindValue(":ns",md5($novaSenha));
-                                        $update->bindValue(":ch",$key);
-                                        $update->bindValue(":iu",$id_usuario);
-                                        $update->execute();
+                        if (isset($_SESSION['msg-rec-senha'])) {
 
-                                        if ($update->execute()) {
-
-                                            $_SESSION['msg'] = "<div id='msg-sucesso'>Senha atualizada com sucesso!</div>";
-
-                                            header('location: login.php');
-
-                                        } else {
-
-                                            ?>
-
-                                            <div id="msg-erro">ERRO! Tente novamente</div>
-
-                                            <?php
-
-
-                                        }
-
-                                    } else {
-                                
-                                        ?>
-        
-                                        <div id="msg-erro">Senha e Confirmar Senha não correspondem!</div>
-        
-                                        <?php
-                                            
-                                    }
-                                } else {
-                                
-                                    ?>
-    
-                                    <div id="msg-erro">Preencha todos os campos!</div>
-    
-                                    <?php
-                                        
-                                }
-                            }
-
-                        } else {
-
-                            $_SESSION['msg-rec-senha'] = "<div id='msg-erro'>Link inválido! Digite email novamente para que um novo link possa ser gerado</div>";
-
-                            header('location: recover-password.php');
-
+                            echo $_SESSION['msg-rec-senha'];
+                            unset($_SESSION['msg-rec-senha']);
+                            
                         }
-
-                    } else {
-
-                        $_SESSION['msg-rec-senha'] = "<div id='msg-erro'>Link inválido! Digite email novamente para que um novo link possa ser gerado</div>";
-
-                        header('location: recover-password.php');
 
                     }
 

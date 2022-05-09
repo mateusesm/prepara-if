@@ -1,5 +1,7 @@
 <?php
     require_once 'authentication_adm.php';
+    require_once 'classes/Documento.php';
+    require 'error.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -64,6 +66,7 @@
                     <input class="button" type="submit" value="Enviar" name="enviar">
 
                     <?php
+                    
                         if(isset($_POST['enviar'])) {
 
                             $formatoPermitido = 'pdf';
@@ -81,100 +84,47 @@
                                 $nomeProva = $_FILES['file-prova']['name'];
                                 $nomeGabarito = $_FILES['file-gabarito']['name'];
 
-                                $selectProva = $pdo->prepare("SELECT id_prova FROM provas WHERE prova = :p");
-                                $selectProva->bindValue(":p",$nomeProva);
-                                $selectProva->execute();
+                                $d = new Documento();
 
-                                $selectGabarito = $pdo->prepare("SELECT id_gabarito FROM gabaritos WHERE gabarito = :g");
-                                $selectGabarito->bindValue(":g",$nomeGabarito);
-                                $selectGabarito->execute();
+                                $cadastrado = $d->verificarSeDocumentoEstaCadastrado($nomeProva,$nomeGabarito);
 
-                                if ($selectProva->rowCount() > 0 || $selectGabarito->rowCount() > 0) {
+                                if ($cadastrado) {
 
-                                    ?>
+                                ?>
 
                                     <div id="msg-erro">Prova e gabarito já estão cadastrados!</div>
 
-                                    <?php
+                                <?php
                                     
                                 } else {
 
+                                    $addDocumento = $d->addDocumento($modalidade,$temporarioProva,$temporarioGabarito,$nomeProva,$nomeGabarito,$ano);
                                 
-                                    if ($modalidade == "Integrado") {
-                        
-                                        $pastaProvas = "pdfs/integrado/provas/";
-                                        $pastaGabaritos = "pdfs/integrado/gabaritos/";
+                                    if ($addDocumento) {
+
+                                    ?>
+        
+                                        <div id='msg-sucesso'>Upload feito com sucesso!</div>
+
+                                    <?php
                             
-                                        if ((move_uploaded_file($temporarioProva, $pastaProvas.$nomeProva)) && (move_uploaded_file($temporarioGabarito, $pastaGabaritos.$nomeGabarito))) {
-                                            
-                                            $insert = $pdo->prepare("INSERT INTO gabaritos(gabarito, modalidade, ano) VALUES (:g, :m, :a)");
-        
-                                            $insert->bindValue(":g",$nomeGabarito);
-                                            $insert->bindValue(":m",$modalidade);
-                                            $insert->bindValue(":a",$ano);
-                                            $insert->execute();
-        
-                                            $select = $pdo->prepare("SELECT id_gabarito FROM gabaritos WHERE ano = :a");
-                                            $select->bindValue(":a",$ano);
-                                            $select->execute();
-        
-                                            $id = $select->fetch();
-                                            $id_gabarito = $id['id_gabarito'];
-        
-                                            $insert = $pdo->prepare("INSERT INTO provas(prova, modalidade, ano, id_gabarito) VALUES (:p, :m, :a, :ig)");
-        
-                                            $insert->bindValue(":p",$nomeProva);
-                                            $insert->bindValue(":m",$modalidade);
-                                            $insert->bindValue(":a",$ano);
-                                            $insert->bindValue(":ig",$id_gabarito);
-                                            $insert->execute();
-        
-                                            echo "<div id='msg-sucesso'>Upload feito com sucesso!</div>";
-                            
-                                        } else {
-                                            echo "<div id='msg-erro'>Não foi possível fazer o upload.</div>";
-                                        }
-                            
-                                    } else if ($modalidade == "Subsequente") {
-                            
-                                        $pastaProvas = "pdfs/subsequente/provas/";
-                                        $pastaGabaritos = "pdfs/subsequente/gabaritos/";
-                            
-                                        if ((move_uploaded_file($temporarioProva, $pastaProvas.$nomeProva)) && (move_uploaded_file($temporarioGabarito, $pastaGabaritos.$nomeGabarito))) {
-                            
-                                            $insert = $pdo->prepare("INSERT INTO gabaritos(gabarito, modalidade, ano) VALUES (:g, :m, :a)");
-        
-                                            $insert->bindValue(":g",$nomeGabarito);
-                                            $insert->bindValue(":m",$modalidade);
-                                            $insert->bindValue(":a",$ano);
-                                            $insert->execute();
-        
-                                            $select = $pdo->prepare("SELECT id_gabarito FROM gabaritos WHERE ano = :a");
-                                            $select->bindValue(":a",$ano);
-                                            $select->execute();
-        
-                                            $id = $select->fetch();
-                                            $id_gabarito = $id['id_gabarito'];
-        
-                                            $insert = $pdo->prepare("INSERT INTO provas(prova, modalidade, ano, id_gabarito) VALUES (:p, :m, :a, :ig)");
-        
-                                            $insert->bindValue(":p",$nomeProva);
-                                            $insert->bindValue(":m",$modalidade);
-                                            $insert->bindValue(":a",$ano);
-                                            $insert->bindValue(":ig",$id_gabarito);
-                                            $insert->execute();
-        
-                                            echo "<div id='msg-sucesso'>Upload feito com sucesso!</div>";
-                            
-                                        } else {
-                                            echo "<div id='msg-erro'>Não foi possível fazer o upload.</div>";
-                                        }
-                            
+                                    } else {
+
+                                    ?>
+                                        <div id='msg-erro'>Não foi possível fazer o upload.</div>
+
+                                    <?php
+
                                     }
                                 }
 
                             } else {
-                                echo "<div id='msg-erro'>Formato inválido.</div>";
+
+                            ?>
+                                <div id='msg-erro'>Formato inválido.</div>
+
+                            <?php
+
                             }
 
                         } 

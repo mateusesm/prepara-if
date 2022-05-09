@@ -12,13 +12,13 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT ;
+!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS ;
+!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION ;
+!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `prepara_if`
+ Banco de dados: `prepara_if`
 --
 
 -- --------------------------------------------------------
@@ -38,13 +38,13 @@ CREATE TABLE `alternativas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- RELACIONAMENTOS PARA TABELAS `alternativas`:
---   `id_questao`
---       `questoes` -> `id_questao`
+ RELACIONAMENTOS PARA TABELAS `alternativas`:
+   `id_questao`
+       `questoes` -> `id_questao`
 --
 
 --
--- Extraindo dados da tabela `alternativas`
+ Extraindo dados da tabela `alternativas`
 --
 
 INSERT INTO `alternativas` (`id_alternativa`, `assunto`, `alternativa`, `modalidade`, `ano`, `correta`, `id_questao`) VALUES
@@ -68,7 +68,7 @@ INSERT INTO `alternativas` (`id_alternativa`, `assunto`, `alternativa`, `modalid
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `gabaritos`
+ Estrutura da tabela `gabaritos`
 --
 
 CREATE TABLE `gabaritos` (
@@ -79,11 +79,11 @@ CREATE TABLE `gabaritos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- RELACIONAMENTOS PARA TABELAS `gabaritos`:
+ RELACIONAMENTOS PARA TABELAS `gabaritos`:
 --
 
 --
--- Extraindo dados da tabela `gabaritos`
+ Extraindo dados da tabela `gabaritos`
 --
 
 INSERT INTO `gabaritos` (`id_gabarito`, `gabarito`, `modalidade`, `ano`) VALUES
@@ -92,7 +92,7 @@ INSERT INTO `gabaritos` (`id_gabarito`, `gabarito`, `modalidade`, `ano`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `provas`
+ Estrutura da tabela `provas`
 --
 
 CREATE TABLE `provas` (
@@ -104,13 +104,13 @@ CREATE TABLE `provas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- RELACIONAMENTOS PARA TABELAS `provas`:
---   `id_gabarito`
---       `gabaritos` -> `id_gabarito`
+ RELACIONAMENTOS PARA TABELAS `provas`:
+   `id_gabarito`
+       `gabaritos` -> `id_gabarito`
 --
 
 --
--- Extraindo dados da tabela `provas`
+ Extraindo dados da tabela `provas`
 --
 
 INSERT INTO `provas` (`id_prova`, `prova`, `modalidade`, `ano`, `id_gabarito`) VALUES
@@ -119,7 +119,7 @@ INSERT INTO `provas` (`id_prova`, `prova`, `modalidade`, `ano`, `id_gabarito`) V
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `questoes`
+ Estrutura da tabela `questoes`
 --
 
 CREATE TABLE `questoes` (
@@ -131,11 +131,11 @@ CREATE TABLE `questoes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- RELACIONAMENTOS PARA TABELAS `questoes`:
+ RELACIONAMENTOS PARA TABELAS `questoes`:
 --
 
 --
--- Extraindo dados da tabela `questoes`
+ Extraindo dados da tabela `questoes`
 --
 
 INSERT INTO `questoes` (`id_questao`, `assunto`, `questao`, `modalidade`, `ano`) VALUES
@@ -147,7 +147,7 @@ INSERT INTO `questoes` (`id_questao`, `assunto`, `questao`, `modalidade`, `ano`)
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuarios`
+ Estrutura da tabela `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -160,11 +160,11 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- RELACIONAMENTOS PARA TABELAS `usuarios`:
+ RELACIONAMENTOS PARA TABELAS `usuarios`:
 --
 
 --
--- Extraindo dados da tabela `usuarios`
+ Extraindo dados da tabela `usuarios`
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nome`, `email`, `senha`, `chave_recuperar_senha`, `nivel`) VALUES
@@ -172,92 +172,92 @@ INSERT INTO `usuarios` (`id_usuario`, `nome`, `email`, `senha`, `chave_recuperar
 (32, 'Mateus', 'mateusemanuel107@gmail.com', 'c20ad4d76fe97759aa27a0c99bff6710', NULL, 1);
 
 --
--- Índices para tabelas despejadas
+ Índices para tabelas despejadas
 --
 
 --
--- Índices para tabela `alternativas`
+ Índices para tabela `alternativas`
 --
 ALTER TABLE `alternativas`
   ADD PRIMARY KEY (`id_alternativa`),
   ADD KEY `id_questao` (`id_questao`);
 
 --
--- Índices para tabela `gabaritos`
+ Índices para tabela `gabaritos`
 --
 ALTER TABLE `gabaritos`
   ADD PRIMARY KEY (`id_gabarito`);
 
 --
--- Índices para tabela `provas`
+ Índices para tabela `provas`
 --
 ALTER TABLE `provas`
   ADD PRIMARY KEY (`id_prova`),
   ADD KEY `id_gabarito` (`id_gabarito`);
 
 --
--- Índices para tabela `questoes`
+ Índices para tabela `questoes`
 --
 ALTER TABLE `questoes`
   ADD PRIMARY KEY (`id_questao`);
 
 --
--- Índices para tabela `usuarios`
+ Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_usuario`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+ AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT de tabela `alternativas`
+ AUTO_INCREMENT de tabela `alternativas`
 --
 ALTER TABLE `alternativas`
   MODIFY `id_alternativa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT de tabela `gabaritos`
+ AUTO_INCREMENT de tabela `gabaritos`
 --
 ALTER TABLE `gabaritos`
   MODIFY `id_gabarito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT de tabela `provas`
+ AUTO_INCREMENT de tabela `provas`
 --
 ALTER TABLE `provas`
   MODIFY `id_prova` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT de tabela `questoes`
+ AUTO_INCREMENT de tabela `questoes`
 --
 ALTER TABLE `questoes`
   MODIFY `id_questao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de tabela `usuarios`
+ AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
--- Restrições para despejos de tabelas
+ Restrições para despejos de tabelas
 --
 
 --
--- Limitadores para a tabela `alternativas`
+ Limitadores para a tabela `alternativas`
 --
 ALTER TABLE `alternativas`
   ADD CONSTRAINT `alternativas_ibfk_1` FOREIGN KEY (`id_questao`) REFERENCES `questoes` (`id_questao`);
 
 --
--- Limitadores para a tabela `provas`
+ Limitadores para a tabela `provas`
 --
 ALTER TABLE `provas`
   ADD CONSTRAINT `provas_ibfk_1` FOREIGN KEY (`id_gabarito`) REFERENCES `gabaritos` (`id_gabarito`);
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT ;
+!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS ;
+!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION ;

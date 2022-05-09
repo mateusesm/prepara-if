@@ -1,5 +1,7 @@
 <?php
     require_once 'authentication_adm.php';
+    require_once 'classes/Usuario.php';
+    require 'error.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -48,15 +50,15 @@
         
                     <?php
 
-                        $select = $pdo->prepare("SELECT id_usuario, nome, email FROM usuarios WHERE nivel != 2");
+                        $u = new Usuario();
 
-                        $select->execute();
+                        $usuario = $u->relacaoUsuarios();
 
-                        if ($select->rowCount() > 0) {
+                        if ($usuario > 0) {
 
-                            $usuario = $select->fetchAll();
-
-                            echo "<table class='table'>
+                        ?>
+    
+                            <table class='table'>
 
                                     <thead class='cabecalho'>
                                         <tr>
@@ -74,7 +76,9 @@
                                             </th>
 
                                         </tr>
-                                    </thead>";
+                                    </thead>
+
+                        <?php
 
                             for ($c = 0; $c < count($usuario); $c++) {
 
@@ -103,55 +107,65 @@
 
                             }
 
-                            echo "</table>";
+                        ?>
+
+                            </table>
+
+                        <?php
 
                         } else {
 
                             $id_del_user = NULL;
 
-                            echo "<table class='table'>
+                            ?>
 
-                                    <thead class='cabecalho'>
+                            <table class='table'>
 
-                                        <tr>
+                                <thead class='cabecalho'>
 
-                                            <th>
-                                                Nome
-                                            </th>
+                                    <tr>
 
-                                            <th>
-                                                E-mail
-                                            </th>
+                                        <th>
+                                            Nome
+                                        </th>
 
-                                            <th>
-                                                Excluir Usuário
-                                            </th>
+                                        <th>
+                                            E-mail
+                                        </th>
 
-                                        </tr>
+                                        <th>
+                                            Excluir Usuário
+                                        </th>
 
-                                    </thead>";
+                                    </tr>
 
-                                echo "<tbody>
+                                </thead>";
+
+                                <tbody>
                                 
-                                        <tr>
+                                    <tr>
 
-                                            <th>
-                                                Nenhum usuário encontrado
-                                            </th>
+                                        <th>
+                                            Nenhum usuário encontrado
+                                        </th>
 
-                                            <th>
-                                                Nenhum e-mail encontrado
-                                            </th>
+                                        <th>
+                                            Nenhum e-mail encontrado
+                                        </th>
 
-                                            <th>";
+                                        <th>
+                                            <?php
                                                 echo "<button id='del-user'><a href='delete-popup-users.php?del_user=$id_del_user'>Excluir</a></button>";
-                                            echo "</th>";
+                                            ?>
+                                        </th>
 
-                                        echo "</tr>
+                                    </tr>
                         
-                                    </tbody>";
+                                </tbody>
 
-                            echo "</table>";
+                            </table>
+
+                        <?php
 
                         }
 
