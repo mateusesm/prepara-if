@@ -6,7 +6,7 @@ O sistema foi construído do zero com PHP, HTML, CSS e um pouco de JavaScript e 
 
 [Clique aqui e veja um vídeo demonstrativo do sistema](https://www.linkedin.com/posts/mateusesm_ifrn-html-css-activity-6929454810656055296-ujLB?utm_source=share&utm_medium=member_desktop)
 
-<a href="https://www.linkedin.com/posts/mateusesm_ifrn-html-css-activity-6929454810656055296-ujLB?utm_source=share&utm_medium=member_desktop">Clique aqui e veja um vídeo demonstrativo do sistema</a>
+<a href="https://www.linkedin.com/posts/mateusesm_ifrn-html-css-activity-6929454810656055296-ujLB?utm_source=share&utm_medium=member_desktop" target="_blank">Clique aqui e veja um vídeo demonstrativo do sistema</a>
 
 O Sistema dispõe de Login e Cadastro de usuário (comum e administrador), várias funções para o usuário comum e funções exclusivas para usuários administradores além de ser responsivo em diversos dispositivos.
 
