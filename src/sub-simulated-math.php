@@ -1,6 +1,6 @@
 <?php
     require_once 'authentication.php';
-    require_once 'classes/Simulado.php';
+    require_once '../classes/Simulado.php';
     require 'error.php';
 ?>
 <!DOCTYPE html>
@@ -9,11 +9,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
-    <link rel="shortcut icon" href="images/book.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/downloads.css">
-    <link rel="stylesheet" href="css/simulated.css">
+    <link rel="shortcut icon" href="../images/book.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/downloads.css">
+    <link rel="stylesheet" href="../css/simulated.css">
     <title>Simulado Matemática</title>
 </head>
 <body>
@@ -31,11 +31,11 @@
 
                 <div class="info" id="div-text-downloads">
                     <h1>Simulado de Matemática</h1>
-                    <h2>Logo abaixo temos um simulado baseado nas questões de provas anteriores de Matemática do Integrado. Vai encarar?</h2>
+                    <h2>Logo abaixo temos um simulado baseado nas questões de provas anteriores de Matemática do Subsequente. Vai encarar?</h2>
                 </div>
     
                 <div class="image-right" id="img-r-main">
-                    <img src="images/simulado.png" alt="Imagem prova com questão certa" id="img-main">
+                    <img src="../images/simulado.png" alt="Imagem prova com questão certa" id="img-main">
                 </div>
 
             </section>
@@ -56,11 +56,11 @@
 
                     <h3>Simulado de Matemática</h3>
 
-                    <form action="analyze-questions.php?modalidade=integrado-matematica" method="POST">
+                    <form action="analyze-questions.php?modalidade=subsequente-matematica" method="POST">
 
-                            <?php
+                          <?php
 
-                                $modalidade = 'Integrado';
+                                $modalidade = 'Subsequente';
                                 $materia = 'Matematica';
 
                                 $s = new Simulado();
@@ -169,7 +169,7 @@
         
     </div>
 
-    <script src="js/toggle-menu.js"></script>
+    <script src="../js/toggle-menu.js"></script>
 
 </body>
 </html>

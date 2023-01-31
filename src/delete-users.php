@@ -1,7 +1,7 @@
 <?php
 
     require_once 'authentication_adm.php';
-    require_once 'classes/Usuario.php';
+    require_once '..classes/Usuario.php';
     require 'error.php';
 
     if (isset($_POST['password-popup'])) {

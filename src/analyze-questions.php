@@ -1,7 +1,7 @@
 <?php
 
     require_once 'authentication.php';
-    require_once 'classes/Simulado.php';
+    require_once '../classes/Simulado.php';
     require 'error.php';
 
     $res = array();

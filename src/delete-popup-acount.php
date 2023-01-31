@@ -4,7 +4,7 @@
 
     $_SESSION['div-delete'] = "<div class='ic-delete'>
 
-        <img  id='sad-face-delete' src='images/sad-face.jpg' alt='Sad face'/>
+        <img  id='sad-face-delete' src='../images/sad-face.jpg' alt='Sad face'/>
 
             <p id='delete-sad'>
 

@@ -1,5 +1,5 @@
 <?php
-    include 'php/conexao.php';
+    include '../classes/Conexao.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
-    <link rel="shortcut icon" href="images/book.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="../images/book.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Prepara IF</title>
 </head>
 <body>
@@ -37,7 +37,7 @@
                 </div>
                 
                 <div class="image-right" >
-                    <img src="images/devices2.png" alt="Dispositivos" id="img-index">
+                    <img src="../images/devices2.png" alt="Dispositivos" id="img-index">
                 </div>
 
             </section>
@@ -45,22 +45,22 @@
             <section class="second">
             <div class="cards">
                 <div class="card" id="prova">
-                    <img src="images/prova.png" alt="Prova">
+                    <img src="../images/prova.png" alt="Prova">
                     <p>Downloads de provas anteriores</p>
                 </div>
 
                 <div class="card" id="redacao">
-                    <img src="images/redacao.png" alt="Redação">
+                    <img src="../images/redacao.png" alt="Redação">
                     <p>Temas de redações anteriores</p>
                 </div>
 
                 <div class="card" id="simulado">
-                    <img src="images/simulado.png" alt="Simulado">
+                    <img src="../images/simulado.png" alt="Simulado">
                     <p>Simulados</p>
                 </div>
 
                 <div class="card" id="dica">
-                    <img src="images/dica.png" alt="Dica">
+                    <img src="../images/dica.png" alt="Dica">
                     <p>Dicas de estudo</p>
                 </div>
             </div>   
@@ -81,6 +81,6 @@
 
     </div>
 
-    <script src="js/toggle-menu.js"></script>
+    <script src="../js/toggle-menu.js"></script>
 </body>
 </html>

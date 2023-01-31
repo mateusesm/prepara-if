@@ -1,6 +1,6 @@
 <?php
     require_once 'authentication.php';
-    require_once 'classes/Simulado.php';
+    require_once '../classes/Simulado.php';
     require 'error.php';
 ?>
 <!DOCTYPE html>
@@ -9,11 +9,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
-    <link rel="shortcut icon" href="images/book.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/downloads.css">
-    <link rel="stylesheet" href="css/simulated.css">
+    <link rel="shortcut icon" href="../images/book.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/downloads.css">
+    <link rel="stylesheet" href="../css/simulated.css">
     <title>Simulado Língua Portuguesa</title>
 </head>
 <body>
@@ -35,7 +35,7 @@
                 </div>
     
                 <div class="image-right" id="img-r-main">
-                    <img src="images/simulado.png" alt="Imagem prova com questão certa" id="img-main">
+                    <img src="../images/simulado.png" alt="Imagem prova com questão certa" id="img-main">
                 </div>
 
             </section>
@@ -169,7 +169,7 @@
         
     </div>
 
-    <script src="js/toggle-menu.js"></script>
+    <script src="../js/toggle-menu.js"></script>
 
 </body>
 </html>

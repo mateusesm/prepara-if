@@ -1,7 +1,7 @@
 <?php
 
     require_once 'authentication_adm.php';
-    require_once 'classes/Documento.php';
+    require_once '../classes/Documento.php';
     require 'error.php';
 
     $id_documento = sprintf($_GET['document']);

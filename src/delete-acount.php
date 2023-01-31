@@ -1,7 +1,7 @@
 <?php
 
     require_once 'authentication.php';
-    require_once 'classes/Usuario.php';
+    require_once '../classes/Usuario.php';
     require 'error.php';
 
     if (!empty($_POST['delete-acount'])) {

@@ -1,6 +1,6 @@
 <?php
     require_once 'authentication.php';
-    require_once 'classes/Documento.php';
+    require_once '../classes/Documento.php';
     require 'error.php';
 ?>
 <!DOCTYPE html>
@@ -9,10 +9,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
-    <link rel="shortcut icon" href="images/book.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/downloads.css">
+    <link rel="shortcut icon" href="../images/book.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/downloads.css">
     <title>Provas do Subsequente</title>
 </head>
 <body>
@@ -33,7 +33,7 @@
                 </div>
     
                 <div class="image-right" id="img-r-main">
-                    <img src="images/prova.png" alt="Homem Jovem estudando" id="img-main">
+                    <img src="../images/prova.png" alt="Homem Jovem estudando" id="img-main">
                 </div>
 
             </section>
@@ -77,9 +77,9 @@
 
                                     echo "<div class='card' id='ic-downloads'>
                                             
-                                            <img src='images/pdf.png' alt='PDF'/>
+                                            <img src='../images/pdf.png' alt='PDF'/>
 
-                                            <a href='pdfs/subsequente/provas/" . $documentos[$c]['prova'] . "'target='_blank'>
+                                            <a href='../pdfs/subsequente/provas/" . $documentos[$c]['prova'] . "'target='_blank'>
 
                                                 <p id='prova'>
 
@@ -90,7 +90,7 @@
 
                                             </a>
 
-                                            <a href='pdfs/subsequente/gabaritos/" . $documentos[$c]['gabarito'] . "' target='_blank'>
+                                            <a href='../pdfs/subsequente/gabaritos/" . $documentos[$c]['gabarito'] . "' target='_blank'>
 
                                                 <p id='gabarito'>
 
@@ -126,7 +126,7 @@
 
                             <div class='card' id='ic-downloads'>
                                     
-                                <img  id='sad-face' src='images/sad-face.jpg' alt='Sad face'/>
+                                <img  id='sad-face' src='../images/sad-face.jpg' alt='Sad face'/>
 
                                     <a>
 
@@ -157,7 +157,7 @@
 
     </div>
 
-    <script src="js/toggle-menu.js"></script>
+    <script src="../js/toggle-menu.js"></script>
 
 </body>
 </html>

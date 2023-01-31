@@ -11,9 +11,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
-    <link rel="shortcut icon" href="images/book.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="shortcut icon" href="../images/book.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/login.css">
     <title>Login</title>
 </head>
 <body>
@@ -59,7 +59,7 @@
                             $email = addslashes($_POST['mail']);
                             $senha = addslashes($_POST['password']);
 
-                            require_once 'classes/Usuario.php';
+                            require_once '../classes/Usuario.php';
 
                             $u = new Usuario();
 
@@ -102,6 +102,6 @@
     </div>
 
     <script src="https://kit.fontawesome.com/00d3e5c25f.js" crossorigin="anonymous"></script>
-    <script src="js/toggle-menu.js"></script>
+    <script src="../js/toggle-menu.js"></script>
 </body>
 </html>
